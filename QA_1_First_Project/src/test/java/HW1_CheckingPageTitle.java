@@ -8,9 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class FirstSeleniumTest {
+public class HW1_CheckingPageTitle {
+
     //Адрес страницы
-    private static final String URL = "https://telranedu.web.app/home";
+    private static final String URL = "https://ilcarro.web.app/";
     //Драйвер
     public WebDriver driver;
 
@@ -30,11 +31,11 @@ public class FirstSeleniumTest {
     @Test
     @DisplayName("Проверка заголовка страницы")
     void testOpenBrowser() {
-        driver.get("https://www.google.com/");//Открытие страницы
+        driver.get("https://ilcarro.web.app/");//Открытие страницы
 
         driver.navigate().back();//Возврат на предыдущую страницу
         driver.navigate().forward();//Переход на следующую страницу
         driver.navigate().refresh();//Обновление страницы
-        Assertions.assertEquals("Google", driver.getTitle(), "Открыта страница с другим Title");//Проверка заголовка страницы
+        Assertions.assertEquals("Search", driver.getTitle(), "Открыта страница с другим Title");//Проверка заголовка страницы
 }
     }
