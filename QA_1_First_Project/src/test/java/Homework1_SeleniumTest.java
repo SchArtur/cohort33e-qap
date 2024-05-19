@@ -24,7 +24,7 @@ public class Homework1_SeleniumTest {
 @Test
 @DisplayName("Checking search page")
 void testOpenBrowser(){
-    driver.get("https://ilcarro.web.app/search");
+    driver.get(URL);
    driver.navigate().back();
    driver.navigate().forward();
    driver.navigate().refresh();
