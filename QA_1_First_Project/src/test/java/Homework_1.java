@@ -6,7 +6,7 @@ import java.time.Duration;
 
 public class Homework_1 {
     private static final String URL = "https://www.google.com/";
-
+     //
     public WebDriver driver;
 
     @BeforeEach
@@ -25,7 +25,7 @@ public class Homework_1 {
     void testOpenBrowser() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("https://ilcarro.web.app/search");
+        driver.get("https://ilcarro.web.app/search");//открытие страницы
         driver.navigate().forward();
         driver.navigate().back();
         driver.navigate().forward();
