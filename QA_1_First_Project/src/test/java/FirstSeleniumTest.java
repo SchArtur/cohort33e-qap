@@ -4,24 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class FirstSeleniumTest {
-    //Адрес страницы
-    private static final String URL = "https://telranedu.web.app/home";
-    //Драйвер
-    public WebDriver driver;
-
-    @BeforeEach
-    void startDriver() {
-        //Создание драйвера
-        driver = new ChromeDriver();
-        //Настройка ожидания появления элемента
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
-    @AfterEach
-    void quitDriver() {
-        driver.quit();//Закрытие браузера
-    }
+public class FirstSeleniumTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка заголовка страницы")
