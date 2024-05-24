@@ -1,8 +1,6 @@
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+package com.ait.lesson;
 
-import java.time.Duration;
+import org.junit.jupiter.api.*;
 
 public class FirstSeleniumTest extends BaseTest {
 
