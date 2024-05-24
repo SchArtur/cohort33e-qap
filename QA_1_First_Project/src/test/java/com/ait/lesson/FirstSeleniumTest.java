@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:QA_1_First_Project/src/test/java/java/com/ait/lesson/FirstSeleniumTest.java
 package java.com.ait.lesson;
+========
+package com.ait.lesson;
+>>>>>>>> faff0f4 (add new Project):QA_1_First_Project/src/test/java/com/ait/lesson/FirstSeleniumTest.java
 
 import org.junit.jupiter.api.*;
 
