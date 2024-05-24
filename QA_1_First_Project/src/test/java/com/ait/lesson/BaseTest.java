@@ -2,6 +2,7 @@ package com.ait.lesson;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +21,6 @@ public class BaseTest {
     protected static final String URL_ILCARRO = "https://ilcarro.web.app/search";
     //Явное ожидание
     WebDriverWait wait;
-
 
     @BeforeEach
     void startDriver() {
@@ -54,9 +54,8 @@ public class BaseTest {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-   //Alert
-
-
-
-
+    //Alert
+    protected Alert getAlert() {
+        return wait.until(ExpectedConditions.alertIsPresent());
+    }
 }
