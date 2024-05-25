@@ -1,3 +1,5 @@
+package com.ait.hw;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,11 +12,16 @@ public class HW2_TestDemoWebShop extends BaseTest {
     @DisplayName("Поиск элемента по имени тега")
     void test1() {
         // Открываем страницу
-        driver.get(URL_DEMO_WEB_SHOP);
+        driver.get(BaseTest.URL_DEMO_WEB_SHOP);
         // Ищем элемент по тегу
         WebElement elementStrong = driver.findElement(By.tagName("strong"));
         // Проверяем, что текст элемента соответствует ожидаемому
         Assertions.assertEquals("CATEGORIES", elementStrong.getText(), "Элемент не CATEGORIES");
+
+        // Ищем элемент по тегу
+        WebElement elementStrong1 = getElementBy(By.cssSelector("[class*='manufacturer']")).findElement(By.tagName("strong"));
+        // Проверяем, что текст элемента соответствует ожидаемому
+        Assertions.assertEquals("MANUFACTURERS", elementStrong1.getText(), "Элемент не Manufacturers");
 
         // Ищем элемент по тегу
         WebElement elementH3 = driver.findElement(By.tagName("h3"));
@@ -31,7 +38,7 @@ public class HW2_TestDemoWebShop extends BaseTest {
     @DisplayName("Поиск элемента по имени")
     void test2() {
         // Открываем страницу
-        driver.get(URL_DEMO_WEB_SHOP);
+        driver.get(BaseTest.URL_DEMO_WEB_SHOP);
         // Ищем элемент по имени
         WebElement elementByName = getElementBy(By.name("NewsletterEmail"));
         Assertions.assertTrue(elementByName.isDisplayed(), "elementByName нет на странице");
@@ -47,7 +54,7 @@ public class HW2_TestDemoWebShop extends BaseTest {
     @DisplayName("Поиск элемента по id")
     void test3() {
         // Открываем страницу
-        driver.get(URL_DEMO_WEB_SHOP);
+        driver.get(BaseTest.URL_DEMO_WEB_SHOP);
         // Ищем элемент по id
         WebElement elementById = getElementBy(By.id("newsletter-email"));
         // Проверяем, что элемент отображается на странице
@@ -68,7 +75,7 @@ public class HW2_TestDemoWebShop extends BaseTest {
     @DisplayName("Поиск элемента по className")
     void test4() {
         // Открываем страницу
-        driver.get(URL_DEMO_WEB_SHOP);
+        driver.get(BaseTest.URL_DEMO_WEB_SHOP);
         // Ищем элемент по className
         WebElement elementByClassName = getElementBy(By.className("header-logo"));
         Assertions.assertTrue(elementByClassName.isDisplayed(), "elementByClassName нет на странице");
@@ -86,7 +93,7 @@ public class HW2_TestDemoWebShop extends BaseTest {
     @DisplayName("Поиск элемента по text")
     void test5() {
         // Открываем страницу
-        driver.get(URL_DEMO_WEB_SHOP);
+        driver.get(BaseTest.URL_DEMO_WEB_SHOP);
         // Ищем элемент по linkText
         WebElement elementByLinkText = getElementBy(By.linkText("Electronics"));
         Assertions.assertTrue(elementByLinkText.isDisplayed(), "elementByLinkText нет на странице");
@@ -104,7 +111,7 @@ public class HW2_TestDemoWebShop extends BaseTest {
     @DisplayName("Поиск элемента по частичному тексту.")
     void test6() {
         // Открываем страницу
-        driver.get(URL_DEMO_WEB_SHOP);
+        driver.get(BaseTest.URL_DEMO_WEB_SHOP);
         // Ищем элемент по partialLinkText
         WebElement elementByPartialLinkText = getElementBy(By.partialLinkText("Log"));
         Assertions.assertTrue(elementByPartialLinkText.isDisplayed(), "elementByPartialLinkText нет на странице");
