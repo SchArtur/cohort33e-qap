@@ -1,4 +1,4 @@
-package java.com.ait.lesson;
+package com.ait.lesson;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

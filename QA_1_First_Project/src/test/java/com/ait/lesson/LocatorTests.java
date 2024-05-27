@@ -1,4 +1,4 @@
-package java.com.ait.lesson;
+package com.ait.lesson;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
