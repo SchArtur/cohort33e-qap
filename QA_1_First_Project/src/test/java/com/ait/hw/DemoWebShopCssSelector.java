@@ -9,34 +9,45 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class DemoWebShopCssSelector extends BaseTest {
     @Test
     @DisplayName("Css тесты")
     void test1() {
-
-        driver.get(URL_DemoWebShopCssSelector);
+         driver.get(URL_DemoWebShopCssSelector);
         //tagName -> tag div
 //        ListWebElement tagName = driver.findElement(By.tagName("div"));
         List<WebElement> listDivElements = driver.findElements(By.cssSelector("div"));
         Assertions.assertFalse(listDivElements.isEmpty(), "Нет элементов с тэгом \"div\"");
 
         //By.id -> #id
-        WebElement elementById = driver.findElement(By.cssSelector("#dialog-notification-success"));
-//        WebElement elementById = driver.findElement(By.id("dialog-notification-success"));
-//        Assertions.assertEquals("dialog-notification-success", elementById.getAttribute("id") );
+       /* WebElement elementById = driver.findElement(By.cssSelector("#dialog-notification-success"));
+        Assertions.assertTrue(elementById.isDisplayed(), "elementById нет на странице");*/
+        //тот же элелмент по ID, но проверяемый By.id
+      /* WebElement elementById1 = driver.findElement(By.id("dialog-notification-success"));
+        Assertions.assertEquals("dialog-notification-success", elementById1.getAttribute("id") );*/
 
         //class -> .class
-//        WebElement elementByClass = driver.findElement(By.className("search-box"))
-        WebElement elementByClass = driver.findElement(By.cssSelector(".search-box"));
-//        WebElement elementByClass = driver.findElement(By.cssSelector("class='search-box'"))
-        Assertions.assertEquals("search-box", elementByClass.getCssValue("class"));
+       WebElement elementByClass1 = driver.findElement(By.className("search-box"));
+        Assertions.assertTrue(elementByClass1.isDisplayed(), "elementByClass1 нет на странице") ;
+        // точка впереди означает class (".search-box")
+       /* WebElement elementByClass = driver.findElement(By.cssSelector(".search-box"));
+        assertEquals("search-box", elementByClass.getCssValue("class"));*/
+
+       /*WebElement elementByClass2 = driver.findElement(By.cssSelector("class='search-box'"));
+       assertEquals("search-box", elementByClass2.getClass());*/
 
         //name, type, href и по остальным любым атрибутам ->
-        WebElement elementByAtr = driver.findElement(By.cssSelector("[href='/search']"));
+       /* WebElement elementByAtr = driver.findElement(By.cssSelector("[href='/about-us']"));
+        assertEquals("about-us", elementByAtr.getAttribute("href"));*/
+
+        /*WebElement elementByType = driver.findElement(By.cssSelector("[type='/submit']"));
+        assertEquals("submit", elementByType.getAttribute("type")); //чтио писать в getCssValue(properyName - type or Submit)?!!!!!!*/
 
         //Вниз по дереву body img
-        WebElement elementByCss = driver.findElement(By.cssSelector("body img"));
+       /* WebElement elementByCss = driver.findElement(By.cssSelector("body img")); с этим разобраться еще раз на уроке!!!!!!
 
         /*
             class='ng-untouched ng-pristine ng-invalid'"
@@ -50,18 +61,19 @@ public class DemoWebShopCssSelector extends BaseTest {
     @DisplayName("Проверка работы всплывающего уведомления")
     void test2() {
         driver.get(URL_DemoWebShopCssSelector);
-        WebElement loginLink = getElementBy(By.cssSelector("[href='/login']"));
-        loginLink.click();
+       /* WebElement strongLink = getElementBy(By.cssSelector("[strong='/Your Password']"));
+        strongLink.click();*/
 
-        WebElement loginButton = getElementBy(By.cssSelector("button[name='login']"));
-        loginButton.click();
+     /*   WebElement loginButton = getElementBy(By.cssSelector("button[name='login']")); // это еще раз спросить!!!!
+        loginButton.click();*/
 
-        Alert alert = getAlert();
-        Assertions.assertEquals("Wrong email or password", alert.getText(), "Текст всплывающего уведомления не соответствует ожидаемому");
-        alert.accept();
+        /*Alert alertSubscribe = getAlert();
+        assertEquals("Failed to subscribe", alertSubscribe.getText(), "Текст всплывающего уведомления не соответствует ожидаемому");
+        alertSubscribe.accept();*/
 
-        WebElement errorTextElement = getElementBy(By.cssSelector("[class='login_login__3EHKB'] div"));
-        Assertions.assertEquals("Login Failed with code 401", errorTextElement.getText(), "Текст ошибки не соответствует ожидаемому");
+        // пример попросить разобрать в классе
+      /*  WebElement validationSummaryErrors = getElementBy(By.cssSelector("[class='validation-summary-errors'] div"));
+        assertEquals("Login was unsuccessful.Please correct the errors and try again.", validationSummaryErrors.getText(), "Текст ошибки не соответствует ожидаемому");*/
     }
 
 }

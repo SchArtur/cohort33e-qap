@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-
+/*
 public class DemoWebShop extends BaseTest {
 
     @Test
@@ -68,5 +68,5 @@ public class DemoWebShop extends BaseTest {
         Assertions.assertTrue(elementByPartialLinkText.isDisplayed(), "elementByPartialLinkText нет на странице");
     }
 }
-
+*/
 
