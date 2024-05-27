@@ -8,6 +8,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/QA_1_First_Project" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/QA_1_First_Project" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/QA_1_First_Project" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -20,3 +20,13 @@ S
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 v
 FQA_1_First_Project/src/test/java/com/ait/hw/HW1_CheckingPageTitle.java,8\5\85922b65cc0b66a6ec89d30499cfd330b68e0356
+u
+EQA_1_First_Project/src/test/java/com/ait/hw/HW3_CssLocatorsTests.java,6\a\6ad121cbc318df1659382325369535cd7efe0c5d
+v
+FQA_1_First_Project/src/test/java/com/ait/lesson/FirstSeleniumTest.java,1\0\10ec580ddbe2fd41aee4d962e2a276f05265ae41
+?
+settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+Y
+).idea/modules/QA_1_First_Project.main.iml,2\b\2b1753408966727b797e6ffcdccdc75097d7abc1
