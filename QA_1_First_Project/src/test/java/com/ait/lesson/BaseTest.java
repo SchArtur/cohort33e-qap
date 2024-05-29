@@ -1,6 +1,7 @@
 package com.ait.lesson;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -54,8 +55,20 @@ public class BaseTest {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    //Alert
+    //Ожидание появления уведомления от браузера
     protected Alert getAlert() {
         return wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    protected void fillInputField(By locator, String value) {
+        WebElement element = getElementBy(locator);
+        element.clear();
+        element.sendKeys(value);
+        Assertions.assertEquals(value, element.getAttribute("value"), "Введенный текст отличается от того что в элементе");
+    }
+
+    protected void clickOnElement(By locator) {
+        WebElement element = waitForClickableElement(locator);
+        element.click();
     }
 }
