@@ -43,7 +43,7 @@ public class DemoWebShopCssSelector extends BaseTest {
        /* WebElement elementByAtr = driver.findElement(By.cssSelector("[href='/about-us']"));
         assertEquals("about-us", elementByAtr.getAttribute("href"));*/
 
-        /*WebElement elementByType = driver.findElement(By.cssSelector("[type='/submit']"));
+        WebElement elementByType = driver.findElement(By.cssSelector("[type='submit']"));
         assertEquals("submit", elementByType.getAttribute("type")); //чтио писать в getCssValue(properyName - type or Submit)?!!!!!!*/
 
         //Вниз по дереву body img
