@@ -1,3 +1,6 @@
+package com.ait.hw;
+
+import com.ait.lesson.BaseTest;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -44,9 +47,9 @@ public class Homework_2 extends BaseTest {
         WebElement elementByPartialLinkText = getElementBy(By.partialLinkText("COMPU"));
         Assertions.assertTrue(elementByPartialLinkText.isDisplayed(), "elementByPartialLinkText нет на странице");
 
-
         WebElement elementByLinkText = getElementBy(By.linkText("Computers"));
         Assertions.assertTrue(elementByLinkText.isDisplayed(), "elementByLinkText нет на странице");
+
 
         WebElement elementByCssByClass = getElementBy(By.cssSelector("a[href='/producttag/8/awesome']"));
         Assertions.assertTrue(elementByCssByClass.isDisplayed(), "elementByName нет на странице");
