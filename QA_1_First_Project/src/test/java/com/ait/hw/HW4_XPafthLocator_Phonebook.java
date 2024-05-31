@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import java.util.Collections;
 import java.util.List;
 
-public class HW_XPafthLocator_Phonebook extends BaseTest {
+public class HW4_XPafthLocator_Phonebook extends BaseTest {
       /*
     1) * - позволяет выбрать любой элемент
     2) [] - индекс узла html/body/div/div[1]/a[1]

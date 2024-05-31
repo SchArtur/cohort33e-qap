@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class DemoWebShopCssSelector extends BaseTest {
+public class HW3_DemoWebShopCssSelector extends BaseTest {
 
     @Test
     @DisplayName("Css тесты")
