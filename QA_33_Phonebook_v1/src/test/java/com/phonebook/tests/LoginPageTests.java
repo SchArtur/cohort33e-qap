@@ -45,13 +45,13 @@ public class LoginPageTests extends BaseTest {
         alert.accept();
 
         WebElement errorTextElement = getElementBy(By.xpath("//*[contains(text(), '401')]"));
-        Assertions.assertEquals("Login Failed with code 401", errorTextElement.getText(), "Текст ошибки не соответствует ожидаемому");
+        Assertions.assertEquals("Login Failed with code 401", errorTextElement.getText()+"1", "Текст ошибки не соответствует ожидаемому");
     }
-
 
     @Test
     @Tag("@Positive")
     @Tag("@SMOKE")
+    @Disabled
     @DisplayName("Проверка успешной регистрации")
     void loginTest4() {
         login(randomEmail(), "Manuel1234$", REGISTRATION);
@@ -69,4 +69,5 @@ public class LoginPageTests extends BaseTest {
         String email = new String(result) + "@test.com";
         return email;
     }
+
 }

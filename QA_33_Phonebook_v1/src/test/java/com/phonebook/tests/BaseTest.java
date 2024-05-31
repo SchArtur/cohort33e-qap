@@ -1,5 +1,6 @@
 package com.phonebook.tests;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,17 +36,14 @@ public class BaseTest {
         driver.quit();
     }
 
-    //Поиск элемента на странице, с явным ожиданием его появления
     protected WebElement getElementBy(By locator) {
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
     }
 
-    //Ожидание кликабельности элемента
     private WebElement waitForClickableElement(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    //Ожидание появления уведомления от браузера
     protected Alert getAlert() {
         return wait.until(ExpectedConditions.alertIsPresent());
     }
@@ -58,11 +56,13 @@ public class BaseTest {
         Assertions.assertEquals(value, element.getAttribute("value"), "Введенный текст отличается от того что в элементе");
     }
 
+    @Step("Делаем клик по элементу с локатором {0}")
     protected void clickOnElement(By locator) {
         WebElement element = waitForClickableElement(locator);
         element.click();
     }
 
+//    @Step("Заполняем форму авторизации {0} , {1} и нажимаем {2}")
     protected void login(String email, String password, String loginOrRegistration) {
         clickOnElement(By.xpath("//*[text()='LOGIN']"));
         fillInputField(By.name("email"), email);
