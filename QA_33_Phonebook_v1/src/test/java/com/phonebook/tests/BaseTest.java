@@ -1,5 +1,6 @@
-package com.ait.lesson;
+package com.phonebook.tests;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,47 +16,34 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    //Драйвер
-    public WebDriver driver;
-    //Адреса страниц
-    protected static final String URL_PHONE_BOOK = "https://telranedu.web.app/home";
-    protected static final String URL_ILCARRO = "https://ilcarro.web.app/search";
-    //Явное ожидание
+    WebDriver driver;
     WebDriverWait wait;
+    static final String URL_PHONE_BOOK = "https://telranedu.web.app";
+    static final String LOGIN = "Login";
+    static final String REGISTRATION = "Registration";
 
     @BeforeEach
     void startDriver() {
-        //Создание драйвера
         driver = new ChromeDriver();
-
-        //Инициализация явного ожидания
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        //Настройка не явного ожидания появления элементов на странице
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        //Ожидание полной загрузки страницы
-        //driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-        //Ожидание выполнения асинхронного запроса
-        //driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(5));
-        //Задаёт размер окна браузера
         driver.manage().window().maximize();
+        driver.get(URL_PHONE_BOOK);
     }
 
     @AfterEach
     void quitDriver() {
-        driver.quit();//Закрытие браузера
+        driver.quit();
     }
 
-    //Поиск элемента на странице, с явным ожиданием его появления
-    public WebElement getElementBy(By locator){
+    protected WebElement getElementBy(By locator) {
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
     }
-    //Ожидание кликабельности элемента
-    private WebElement waitForClickableElement(By locator){
+
+    private WebElement waitForClickableElement(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    //Ожидание появления уведомления от браузера
     protected Alert getAlert() {
         return wait.until(ExpectedConditions.alertIsPresent());
     }
@@ -68,8 +56,25 @@ public class BaseTest {
         Assertions.assertEquals(value, element.getAttribute("value"), "Введенный текст отличается от того что в элементе");
     }
 
+    @Step("Делаем клик по элементу с локатором {0}")
     protected void clickOnElement(By locator) {
         WebElement element = waitForClickableElement(locator);
         element.click();
+    }
+
+//    @Step("Заполняем форму авторизации {0} , {1} и нажимаем {2}")
+    protected void login(String email, String password, String loginOrRegistration) {
+        clickOnElement(By.xpath("//*[text()='LOGIN']"));
+        fillInputField(By.name("email"), email);
+        fillInputField(By.name("password"), password);
+        if (LOGIN.equals(loginOrRegistration)) {
+            clickOnElement(By.name("login"));
+        } else if (REGISTRATION.equals(loginOrRegistration)) {
+            clickOnElement(By.name("registration"));
+        }
+    }
+
+    protected void loginTestUser() {
+        login("manuel@gm.com", "Manuel1234$","Login");
     }
 }
