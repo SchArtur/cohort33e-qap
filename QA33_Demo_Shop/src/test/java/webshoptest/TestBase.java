@@ -57,10 +57,10 @@ public class TestBase {
         Assertions.assertEquals(value, element.getAttribute("value"), "The entered text differs from the fact that in the element");
     }
 
-//    protected void clickOnElement(By locator) {
-//        WebElement element = waitForClickableElement(locator);
-//        element.click();
-//    }
+    protected void clickOnElement(By locator) {
+        WebElement element = waitForClickableElement(locator);
+        element.click();
+    }
 
     protected void login(String email, String password, String loginOrRegistration) {
         clickOnElement(By.xpath("//*[text()='LOGIN']"));
@@ -73,8 +73,8 @@ public class TestBase {
         }
     }
 
-    void clickOnElement(By xpath) {
-    }
+//    void clickOnElement(By xpath) {
+//    }
 
 //    protected void loginTestUser() {
 //        login("manuel@gm.com", "Manuel1234$","Login");

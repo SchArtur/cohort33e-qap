@@ -26,7 +26,9 @@ public class CreateAccountTest extends TestBase {
         fillInputField(By.id("ConfirmPassword"), "GhUl20DsaVx");
 
         clickOnElement(By.xpath("//*[@id='register-button']"));
-        Assertions.assertTrue(getElementBy(By.xpath("/html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]")).isDisplayed(),  "There is no confirmation message for exit registration");
+        Assertions.assertTrue(getElementBy(By.cssSelector("[class='result']")).getText().contains("Your registration completed"),  "There is no confirmation message for exit registration");
+
+
     }
 
     private static String randomEmail() {
