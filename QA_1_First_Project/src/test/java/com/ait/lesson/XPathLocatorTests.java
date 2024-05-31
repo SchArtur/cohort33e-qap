@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class XPathLocatorTests extends BaseTest {
 
@@ -43,8 +42,6 @@ public class XPathLocatorTests extends BaseTest {
         12) following::div - выбирает всех соседей текущего и следущих узлов
         *
      */
-
-
 
     @Test
     @DisplayName("Поиск элементов по xPath")

@@ -1,6 +1,6 @@
 package com.phonebook.tests;
 
-import io.qameta.allure.Step;
+import com.phonebook.tests.data.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,13 +21,14 @@ public class BaseTest {
     static final String URL_PHONE_BOOK = "https://telranedu.web.app";
     static final String LOGIN = "Login";
     static final String REGISTRATION = "Registration";
+    static final User TEST_USER = new User("manuel@gm.com", "Manuel1234$");
 
     @BeforeEach
     void startDriver() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
         driver.get(URL_PHONE_BOOK);
     }
 
@@ -56,17 +57,15 @@ public class BaseTest {
         Assertions.assertEquals(value, element.getAttribute("value"), "Введенный текст отличается от того что в элементе");
     }
 
-    @Step("Делаем клик по элементу с локатором {0}")
     protected void clickOnElement(By locator) {
         WebElement element = waitForClickableElement(locator);
         element.click();
     }
 
-//    @Step("Заполняем форму авторизации {0} , {1} и нажимаем {2}")
-    protected void login(String email, String password, String loginOrRegistration) {
+    protected void loginOrRegistration(User user, String loginOrRegistration) {
         clickOnElement(By.xpath("//*[text()='LOGIN']"));
-        fillInputField(By.name("email"), email);
-        fillInputField(By.name("password"), password);
+        fillInputField(By.name("email"), user.getEmail());
+        fillInputField(By.name("password"), user.getPassword());
         if (LOGIN.equals(loginOrRegistration)) {
             clickOnElement(By.name("login"));
         } else if (REGISTRATION.equals(loginOrRegistration)) {
@@ -75,6 +74,14 @@ public class BaseTest {
     }
 
     protected void loginTestUser() {
-        login("manuel@gm.com", "Manuel1234$","Login");
+        loginOrRegistration(TEST_USER, LOGIN);
+    }
+
+    protected void waitInSeconds(int seconds) {
+        try{
+            Thread.sleep(Duration.ofSeconds(seconds).toMillis());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
