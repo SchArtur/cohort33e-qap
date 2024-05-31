@@ -65,7 +65,7 @@ public class LoginPageTests extends BaseTest {
     void registrationTest2() {
         loginOrRegistration(new User("manuel@gm.com", "Manue$"), REGISTRATION);
         Alert alert = getAlert();
-        Assertions.assertTrue(alert.getText().contains("Wrong email or password format"),"Отсутствует кнопка выхода ");
+        Assertions.assertTrue(alert.getText().contains("Wrong email or password format"), "Отсутствует кнопка выхода ");
         alert.accept();
 
         WebElement errorTextElement = getElementBy(By.xpath("//*[contains(text(), '401')]"));

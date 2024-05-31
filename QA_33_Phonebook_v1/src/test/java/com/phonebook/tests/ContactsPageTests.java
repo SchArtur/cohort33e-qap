@@ -2,6 +2,7 @@ package com.phonebook.tests;
 
 import com.phonebook.tests.data.Contact;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -17,6 +18,7 @@ public class ContactsPageTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Успешное создание контакта")
     void addTest1() {
         clickOnElement(By.cssSelector("[href='/add']"));
         fillAddContact(TEST_CONTACT);

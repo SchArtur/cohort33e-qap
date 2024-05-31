@@ -78,7 +78,7 @@ public class BaseTest {
     }
 
     protected void waitInSeconds(int seconds) {
-        try{
+        try {
             Thread.sleep(Duration.ofSeconds(seconds).toMillis());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
