@@ -11,7 +11,7 @@ public class LoginPageTest extends TestBase {
     @DisplayName("Verification of successful logging")
     void loginTest() {
         clickOnElement(By.xpath("//*[text()='Log in']"));
-        fillInputField(By.id("Email"), "ivanivanov2@gmail.com");
+        fillInputField(By.id("Email"), "ivanivanov4@gmail.com");
         fillInputField(By.id("Password"), "GhUl20DsaVx");
         clickOnElement(By.xpath("//input[@class='button-1 login-button']"));
 
