@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 public class LoginPageTests extends BaseTest {
 
     @Test
-    @DisplayName("Проверка успешного логирования")
+    @DisplayName("Проверка успешной авторизации")
     void loginTest () {
         clickOnElement(By.xpath("//*[text()='Log in']"));
         fillInputField(By.id("Email"), "antonantonov@gmail.com");
