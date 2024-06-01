@@ -27,7 +27,7 @@ public class CreateAccountTest extends BaseTest{
 
         clickOnElement(By.xpath("//*[@id='register-button']"));
 
-        Assertions.assertTrue(getElementBy(By.xpath("//div[@class='result']")).isDisplayed(), "Отсутствует сообщения подтверждения регистрации выхода ");
+        Assertions.assertTrue(getElementBy(By.xpath("//div[@class='result']")).getText().contains("Your registration completed"), "Отсутствует сообщения подтверждения регистрации выхода ");
     }
 
     private static String randomEmail() {
