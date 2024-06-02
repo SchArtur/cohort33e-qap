@@ -21,12 +21,12 @@ public class CreateAccountTest extends TestBase {
         Assertions.assertEquals(true, getElementBy(xpath("//*[@href='/register']")).isDisplayed());
 
     }
-    @Test
+    /*@Test
     @DisplayName("Проверка отображения информации по ссылке Register")
     void clickRegister(){
-        clickOnElement(xpath("//*[contains(text(),'Demo Web Shop. Register')]"));
-        Assertions.assertEquals("Demo Web Shop. Register",  "Register form is not found");
-    }
+        clickOnElement(By.linkText("Register"));
+        Assertions.assertTrue(clickRegister).isDisplayed(),  "Register form is not found");
+    }*/
     @Test
     @DisplayName("Проверка cсоздания и  успешной регистрации нового аккаунта")
     private void fillRegistrationForm (){
@@ -34,6 +34,8 @@ public class CreateAccountTest extends TestBase {
         //Создаем объект для ввода данных в форму регистрации
         RegisterForm userForm = new RegisterForm( "male", "John", "Tramp", "JohnTramp@test.com", "Pass123!", "Pass123!");
 
+        //ОТкрываем форму регистрации
+        clickOnElement(By.linkText("Register"));
         //Заполняем форму регистрации
 
         WebElement genderElemnt = null;
@@ -51,23 +53,31 @@ public class CreateAccountTest extends TestBase {
         fillInputField(By.name("Confirm password"), userForm.getConfirmPassword());
 
         //находим и нажимаем кнопку Register, после ввода всех данных в поля регистрации
-        getElementBy(xpath("//*[@action='/register']")).click();
-        Alert alert= getAlert();
-        Assertions.assertEquals("Your registration completed", fillRegistrationForm.getText(), "Registration form is not complited");
+        getElementBy(By.id("register-button"));
+        clickOnElement(By.id("register-button"));
+
+        // Убеждаемся в успешной регистрации
+        WebElement confirmationMessage=getElementBy(By.className("result"));
+        Assertions.assertEquals("Your registration completed", confirmationMessage.getText(), "Registration form is not completed");
 
         // переходим к сохранению акккаунта
-        getElementBy(xpath("//*[@class='button-1 register-continue-button']")).click();
+        getElementBy(xpath("//*[@class='button-1 register-continue-button']"));
+        clickOnElement(By.xpath("//*[@class='button-1 register-continue-button']"));
         Assertions. assertEquals("Continue", fillRegistrationForm.getText(), "Registration form is not complited");
-        // Проверяем переход на страницу "My account-Customer Info"
 
+        // Проверяем переход на страницу "My account-Customer Info" кликаем по эмайлу на месте слова Register
+        WebElement myAccountTitle= getElementBy(By.xpath("//*[contains(text(), 'My account - Customer info']"));
+        Assertions.assertTrue(myAccountTitle.isDisplayed(), "Page is not found");
 
         //нажимаем кнопку "save" для сохранения данных созданного аккаунта
-        getElementBy(xpath("//*[@class='button-1 save-customer-info-button']")).click();
-        Assertions.assertEquals("Save", fillRegistrationForm.getText(), "Registration form is not complited");
+        WebElement saveAccount =getElementBy(xpath("//*[@class='button-1 save-customer-info-button']"));
+        clickOnElement(By.xpath("//*[contains(text(), 'Save']"));
+        Assertions.assertEquals("Save", saveAccount.getText(), "Registration form is not completed");
 
         //завершение регистрации нового аккаунта через выход "Log out"
-        getElementBy(xpath("//*[contains(text(),'Log out')]")).click();
-        Assertions.assertEquals("Log out", fillRegistrationForm.getText(), "Registration form is not complited");
+        WebElement lodOut =getElementBy(xpath("//*[contains(text(),'Log out')]"));
+        clickOnElement(By.linkText("Log out"));
+        Assertions.assertEquals("Log out", lodOut.getText(), "Registration form is not complited");
     }
 
     private void click() {
