@@ -1,5 +1,6 @@
 package com.webshop.tests;
 
+import com.webshop.tests.data.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,13 +21,14 @@ public class BaseTest {
     static final String URL_DEMO_WEBSHOP = "https://demowebshop.tricentis.com/";
     static final String LOGIN = "Login";
     static final String REGISTRATION = "Registration";
+    static final User TEST_USER = new User("AntonAntonov@gmail.com", "WvN3W$VUTA72T");
 
     @BeforeEach
     void startDriver() {
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        driver.manage().window().maximize();
         driver.get(URL_DEMO_WEBSHOP);
     }
 
@@ -35,20 +37,17 @@ public class BaseTest {
         driver.quit();
     }
 
-    //Поиск элемента на странице, с явным ожиданием его появления
     protected WebElement getElementBy(By locator) {
         return wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
     }
 
-    //Ожидание кликабельности элемента
     private WebElement waitForClickableElement(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-//    //Ожидание появления уведомления от браузера
-//    protected Alert getAlert() {
-//        return wait.until(ExpectedConditions.alertIsPresent());
-//    }
+    protected Alert getAlert() {
+        return wait.until(ExpectedConditions.alertIsPresent());
+    }
 
     protected void fillInputField(By locator, String value) {
         WebElement element = waitForClickableElement(locator);
@@ -63,18 +62,28 @@ public class BaseTest {
         element.click();
     }
 
-    protected void login(String email, String password, String loginOrRegistration) {
-        clickOnElement(By.xpath("//*[text()='LOGIN']"));
-        fillInputField(By.name("email"), email);
-        fillInputField(By.name("password"), password);
+    protected void loginOrRegistration(User user, String loginOrRegistration) {
+        clickOnElement(By.xpath("//*[text()='Log in']"));
+        fillInputField(By.name("Email"), user.getEmail());
+        fillInputField(By.name("Password"), user.getPassword());
         if (LOGIN.equals(loginOrRegistration)) {
-            clickOnElement(By.name("login"));
+            clickOnElement(By.xpath("//input[@class='button-1 login-button']"));
         } else if (REGISTRATION.equals(loginOrRegistration)) {
-            clickOnElement(By.name("registration"));
+            clickOnElement(By.name("ico-register"));
         }
     }
 
-//    protected void loginTestUser() {
-//        login("manuel@gm.com", "Manuel1234$","Login");
-//    }
+    protected void loginTestUser() {
+        loginOrRegistration(TEST_USER, LOGIN);
+    }
+
+    protected void waitInSeconds(int seconds) {
+        try {
+            Thread.sleep(Duration.ofSeconds(seconds).toMillis());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
+
