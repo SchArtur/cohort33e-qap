@@ -12,7 +12,7 @@ public class RegisterTest extends TestBase {
         WebElement registerByCss = driver.findElement(By.cssSelector("a[href= '/register']"));
         Assertions.assertTrue(registerByCss.isDisplayed(), "registerByCss is not found");
 
-        WebElement registerByXPath = getElementBy(By.xpath("//*[@[href= 'register']"));
+        WebElement registerByXPath = getElementBy(By.xpath("//*[@href= '/register']"));
         Assertions.assertTrue(registerByXPath.isDisplayed(), "registerByCss is not found");
 
         WebElement registerByText = driver.findElement(By.linkText("Register")) ;

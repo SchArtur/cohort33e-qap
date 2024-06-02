@@ -30,6 +30,6 @@ subprojects {
         testLogging {
             events("passed", "skipped", "failed")
         }
-        finalizedBy('allureReport')
+        //finalizedBy('allureReport')
     }
 }
