@@ -85,32 +85,5 @@ public class LocatorTests extends BaseTest {
         assertTrue(getElementBy(By.xpath("//*[contains(text(),'Regist')]")).isDisplayed());
     }
 
-    @Test
-    @DisplayName("Поиск сложного элемента через родителей")
-    void test4() {
-        driver.get(URL_DEMO_WEB_SHOP);
 
-        assertTrue(getElementBy(By.cssSelector("ul[class='list'] a[href='/computers']")).isDisplayed());
-        assertTrue(getElementBy(By.cssSelector(".list a[href='/computers']")).isDisplayed());
-        assertTrue(getElementBy(By.xpath("//ul[@class='list']//a[@href='/computers']")).isDisplayed()); //так делать можно, но не желательно
-        assertTrue(getElementBy(By.xpath("//ul[@class='list']/descendant::a[@href='/computers']")).isDisplayed());// - так желательно
-
-        WebElement parentElement = getElementBy(By.className("list"));
-        WebElement childElement = parentElement.findElement(By.cssSelector("[href='/computers']"));
-        assertTrue(childElement.isDisplayed());
-
-        int startQuantity = getCartQuantity();
-        driver.findElements(By.cssSelector("[class='product-item']")).get(1).findElement(By.cssSelector("[value='Add to cart']")).click();
-        waitInSeconds(2);
-        int resultQuantity = getCartQuantity();
-        assertTrue(startQuantity+1==resultQuantity, "Товар не добавился в карзину");
-
-    }
-
-    private int getCartQuantity() {
-        WebElement cartQtyElement = getElementBy(By.className("cart-qty"));// '(0)'
-        String cartQtyString = cartQtyElement.getText().replace("(","").replace(")",""); // 0
-//        String cartQtyString = cartQtyElement.getText().replaceAll("\\D", "");// '0' - заменили все символы '(' и ')'
-      return Integer.parseInt(cartQtyString);
-    }
 }

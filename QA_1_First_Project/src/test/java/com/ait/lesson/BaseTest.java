@@ -74,6 +74,16 @@ public class BaseTest {
         element.click();
     }
 
+
+    protected void login(String email, String password, String LOGIN) {
+        clickOnElement(By.xpath("//a[contains(text(),'Log in')]"));
+        fillInputField(By.id("Email"), email);
+        fillInputField(By.id("Password"), password);
+        clickOnElement(By.xpath("//input[@value='Log in']"));
+
+    }
+
+
     protected void waitInSeconds(int seconds) {
         try{
             Thread.sleep(Duration.ofSeconds(seconds).toMillis());
