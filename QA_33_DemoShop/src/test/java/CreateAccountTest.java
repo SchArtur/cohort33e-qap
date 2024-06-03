@@ -46,11 +46,11 @@ public class CreateAccountTest extends TestBase {
         }
         genderElemnt.click();
 
-        fillInputField(By.name("First name "), userForm.getFirstName());
-        fillInputField(By.name("Last name "), userForm.getLastName());
-        fillInputField(By.name("Email"), userForm.getEmail());
-        fillInputField(By.name("Password"), userForm.getPassword());
-        fillInputField(By.name("Confirm password"), userForm.getConfirmPassword());
+        fillInputField(By.xpath("//*[@for='FirstName']"), userForm.getFirstName());
+        fillInputField(By.xpath("//*[@for='LasttName']"), userForm.getLastName());
+        fillInputField(By.xpath("//*[@for='Email']"), userForm.getEmail());
+        fillInputField(By.xpath("//*[@for='Password']"), userForm.getPassword());
+        fillInputField(By.xpath("//*[@for='Confirm password'`]"), userForm.getConfirmPassword());
 
         //находим и нажимаем кнопку Register, после ввода всех данных в поля регистрации
         getElementBy(By.id("register-button"));
