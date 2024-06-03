@@ -22,5 +22,5 @@ test {
     testLogging {
         events("passed", "skipped", "failed")
     }
-    finalizedBy('allureReport')
+
 }

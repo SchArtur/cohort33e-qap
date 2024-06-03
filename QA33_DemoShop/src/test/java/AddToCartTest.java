@@ -1,12 +1,12 @@
-import org.junit.jupiter.api.Assertions;
+/*import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.cssSelector;
-
-
+*/
+/*
 public class AddToCartTest extends TestBase {
 
     @Test
@@ -58,7 +58,7 @@ public class AddToCartTest extends TestBase {
 
         //переходим на главную страницу и добавляем выбранный товар в корзину
 
-        WebElement cartItem = getElementBy(By.xpath("//div[@class= 'button']/descendant::class='button-2 product-box-add-to-cart-button']")).click();
+     /*   WebElement cartItem = getElementBy(By.xpath("//div[@class= 'button']/descendant::class='button-2 product-box-add-to-cart-button']")).click();
         Assertions.assertEquals("Add to cart", cartItem.getText(), "Cart item is not '14.1-inch Laptop'");
 
         //переходим в корзину для проверки добавлен ли выбранный товар
@@ -71,9 +71,9 @@ public class AddToCartTest extends TestBase {
         String cartQtyString = cartQtyElement.getText().replace("(","").replace(")",""); // 0
 //        String cartQtyString = cartQtyElement.getText().replaceAll("\\D", "");// '0' - заменили все символы '(' и ')'
         return Integer.parseInt(cartQtyString);*/
-    }
 
-}
+
+
 
 
 

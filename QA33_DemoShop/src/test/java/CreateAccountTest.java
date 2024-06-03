@@ -13,16 +13,15 @@ public class CreateAccountTest extends TestBase {
     @DisplayName("Проверка посика элемента по xpath ")
     void registerTest() {
         driver.get(DEMO_SHOP_URL);
-        Assertions.assertEquals(true, getElementBy(xpath("//*[@href='/register']")).isDisplayed());
+        Assertions.assertEquals(true, getElementBy(By.xpath("//*[@href='/register']")).isDisplayed());
 
     }
 
     @Test
     @DisplayName("Проверка cсоздания и  успешной регистрации нового аккаунта")
     void fillRegistrationForm() {
-        driver.get(DEMO_SHOP_URL);
         //Создаем объект для ввода данных в форму регистрации
-        RegisterForm userForm = new RegisterForm("male", "John", "Tramp", "JohnTramp4@test.com", "Pass123!", "Pass123!");
+        RegisterForm userForm = new RegisterForm("male", "John", "Tramp", "JohnTramp5@test.com", "Pass123!", "Pass123!");
 
         //ОТкрываем форму регистрации
         clickOnElement(By.linkText("Register"));
