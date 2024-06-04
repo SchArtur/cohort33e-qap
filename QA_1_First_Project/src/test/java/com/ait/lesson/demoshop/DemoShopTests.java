@@ -1,5 +1,6 @@
-package com.ait.lesson;
+package com.ait.lesson.demoshop;
 
+import com.ait.lesson.BaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
