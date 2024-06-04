@@ -1,12 +1,14 @@
-/*import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.cssSelector;
-*/
-/*
+import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.xpath;
+
+
 public class AddToCartTest extends TestBase {
 
     @Test
@@ -19,8 +21,8 @@ public class AddToCartTest extends TestBase {
         clickOnElement(cssSelector("[class=\"ico-login\"]"));
         //заполняем поля формы Log in для входа в аккаунт
 
-        fillInputField(By.id("Email"), userForm.getEmail());
-        fillInputField(By.id("Password"), userForm.getPassword());
+        fillInputField(id("Email"), userForm.getEmail());
+        fillInputField(id("Password"), userForm.getPassword());
         // нажимаем кнопку Log in для подтверждения входа
         clickOnElement(cssSelector("[class='button-1 login-button']"));
 
@@ -30,53 +32,70 @@ public class AddToCartTest extends TestBase {
     }
 
     @Test
-    @DisplayName("переходим на главную страницу , находим козину и проверяем, что корзина пуста, если нет , то очищаем корзину")
-    void checkAndClearShoppingCart() {
-        driver.get(DEMO_SHOP_URL);
+    @DisplayName("Проверяем корзину, удалаем элементы, если не пуста, боваляем элемент, проверяем, что он добавлен, очищаем корзину")
 
-        WebElement shoppingCart = getElementBy(cssSelector("[class='cart-label']"));
-        Assertions.assertEquals("Shopping cart", shoppingCart.getText(), "Shopping cart is not found");
+        // Открываем корзину
+    void checkItemInCart() {
+        clickOnElement(cssSelector("[class='cart-label']"));
 
-     /*  private int getCartQuantity () {
-           WebElement cartQtyElement = getElementBy(By.className("cart-qty"));// '(0)'
-           String cartQtyString = cartQtyElement.getText().replace("(", "").replace(")", ""); // 0
-    //    String cartQtyString = cartQtyElement.getText().replaceAll("\\D", "");// '0' - заменили все символы '(' и ')'
-           return Integer.parseInt(cartQtyString);
-       }*/
+        // Проверяем, пустая ли корзина
 
-    /* int CartQty= getCartQuantity(){
-           WebElement shoppingCartItems = getElementBy(By.cssSelector("[class='cart-qty']"));
-           String cartQtyText = shoppingCartItems.getText();
-           int cartQty = Integer.parseInt(cartQtyText.substring(1, cartQtyText.length() - 1));
-           if (cartQty > 0) {
-               shoppingCartItems.clear();
-           }
-           int i = Integer.parseInt(cartQty);
-           return i;
-       }*/
+        WebElement cartQuantity = getElementBy(cssSelector(".cart-qty"));
 
 
-        //переходим на главную страницу и добавляем выбранный товар в корзину
+        if (!cartQuantity.getText().contains("0")) {
+            clickOnElement(cssSelector("[name='removefromcart']"));
+            // Даем корзине время на обновление
+            try {
+                Thread.sleep(2000); // Подождем 2 секунды
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-     /*   WebElement cartItem = getElementBy(By.xpath("//div[@class= 'button']/descendant::class='button-2 product-box-add-to-cart-button']")).click();
-        Assertions.assertEquals("Add to cart", cartItem.getText(), "Cart item is not '14.1-inch Laptop'");
 
+            // WebElement waitForClickableElement = wait.until(ExpectedConditions.elementToBeClickable(cssSelector("[name='updatecart']")));
+
+            driver.findElement(By.cssSelector(".button-2.update-cart-button")).click();
+        }
+    }
+
+    @Test
+    @DisplayName("добавляем товар в корзину")
+    void addItemToCart() {
+        clickOnElement(cssSelector("[alt='Tricentis Demo Web Shop']"));
+
+        //находим 2ой элемент и добавляем его в корзину
+        WebElement cartItem = driver.findElements(cssSelector("[class='product-item']")).get(1).findElement(cssSelector("[value='Add to cart']"));
+        try {
+            Thread.sleep(2000); // Подождем 2 секунды
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cartItem.click();   //(xpath("//*[@id='add-to-cart-button-31']"));*/
+
+        // Даем корзине время на обновление
+        try {
+            Thread.sleep(2000); // Подождем 2 секунды
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //переходим в корзину для проверки добавлен ли выбранный товар
-        clickOnElement(cssSelector("[class='cart-qty']"));
-        getElementBy(cssSelector("[class='product-name']"));
-        Assertions.assertEquals("14.1-inch Laptop", cartItem.getText(), "Cart item is not '14.1-inch Laptop'");
+       /*WebElement cartLabel = waitForClickableElement(getElementBy("[class='cart-label']"));
+        cartLabel.click();*/
+        //clickOnElement(cssSelector("[class='cart-label']"));
+        getElementBy(By.linkText("Shopping cart")).click();
+        try {
+            Thread.sleep(2000); // Подождем 2 секунды
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-   /* private int getCartQuantity() {
-        WebElement cartQtyElement = getElementBy(By.className("cart-qty"));// '(0)'
-        String cartQtyString = cartQtyElement.getText().replace("(","").replace(")",""); // 0
-//        String cartQtyString = cartQtyElement.getText().replaceAll("\\D", "");// '0' - заменили все символы '(' и ')'
-        return Integer.parseInt(cartQtyString);*/
-
-
-
-
-
+        WebElement addedItem= driver.findElement(cssSelector("[class='product-name']"));
+        Assertions.assertEquals("14.1-inch Laptop", addedItem.getText(), "Cart item is not '14.1-inch Laptop'");
 
 
+    }
 
+
+}
 
