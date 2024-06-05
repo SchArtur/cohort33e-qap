@@ -11,19 +11,16 @@ public class LoginPageHelper extends BaseHelper {
         super(driver, wait);
     }
 
-    public boolean isSignOutButtonPresent() {
-        return isElementPresent(By.xpath("//*[text()='Sign Out']"));
-    }
 
     public boolean isLogOutButtonPresent() {
         return isElementPresent(By.xpath("//*[text()='Log out']"));
     }
 
-    public void clickOnLoginLink(){
+    public void clickOnLoginLink() {
         clickOnElement(By.xpath("//*[text()='Log in']"));
     }
 
-    public void clickOnLoginButton(){
+    public void clickOnLoginButton() {
         clickOnElement(By.xpath("//input[@class='button-1 login-button']"));
     }
 
@@ -36,7 +33,7 @@ public class LoginPageHelper extends BaseHelper {
         fillInputField(By.id("Password"), user.getPassword());
     }
 
-    public void clickOnLogOutButton(){
+    public void clickOnLogOutButton() {
         clickOnElement(By.xpath("//*[text()='Log out']"));
     }
 }
