@@ -15,7 +15,7 @@ import java.time.Duration;
 public class AppManager {
     public static WebDriver driver;
     public static WebDriverWait wait;
-    public static User TEST_USER = new User("ivanivanov4@gmail.com","GhUl20DsaVx");
+    public static User TEST_USER = new User("ivanivanov4@gmail.com", "GhUl20DsaVx");
     static final String URL_DEMO_WEB_SHOP = "https://demowebshop.tricentis.com/";
     private String browser;
 
@@ -51,6 +51,10 @@ public class AppManager {
         createAccountHelper = new CreateAccountHelper(driver, wait);
         loginPageHelper = new LoginPageHelper(driver, wait);
 
+    }
+
+    public void stop() {
+        driver.quit();
     }
 
 
