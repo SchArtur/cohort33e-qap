@@ -1,28 +1,29 @@
 package model;
 
+import java.security.SecureRandom;
+import java.util.Random;
+
 public class NewAccount {
-    private String name;
+    private String firstName;
     private String lastName;
-    private String phone;
     private String email;
-    private String address;
-    private String description;
+    private String password;
+    private String confirmPassword;
 
-    public NewAccount(String name, String lastName, String phone, String email, String address, String description) {
-        this.name = name;
+    public NewAccount(String firstName, String lastName, String email, String password, String confirmPassword) {
+        this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.description = description;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -33,14 +34,6 @@ public class NewAccount {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -49,19 +42,33 @@ public class NewAccount {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getDescription() {
-        return description;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public static String randomEmail() {
+        char[] chars = "0123456789abcdef".toCharArray();
+        Random random = new SecureRandom();
+        char[] result = new char[8];
+        for (int i = 0; i < result.length; i++) {
+            int randomIndex = random.nextInt(chars.length);
+            result[i] = chars[randomIndex];
+        }
+        String email = new String(result) + "@test.com";
+        return email;
     }
 }
+
+

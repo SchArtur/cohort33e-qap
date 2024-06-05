@@ -1,5 +1,6 @@
 package page_helpers;
 
+import model.NewAccount;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -7,23 +8,39 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CreateAccountHelper extends BaseHelper {
 
     public CreateAccountHelper(WebDriver driver, WebDriverWait wait) {
+
         super(driver, wait);
     }
 
-    public void clickOnHomeLink() {
-        clickOnElement(By.cssSelector("[href='/home']"));
+    public void clickOnRegisterLink() {
+
+        clickOnElement(By.xpath("//*[text()='Register']"));
     }
 
-    public boolean checkHomeComponentIsPresent() {
-        return isElementPresent(By.xpath("//*[text()='Home Component']"));
+    public void clickOnGenderCheckbox() {
+        clickOnElement(By.xpath("//*[@id='gender-male']\""));
     }
 
-    public boolean checkReactAppInfoIsPresent() {
-        return isElementPresent(By.xpath("//*[text()='React Contacts App']"));
+    public boolean isRegistrationCompleted() {
+
+        return isElementPresent(By.xpath("//div[@class='result']']"));
     }
 
-    public boolean checkForQaInfoIsPresent() {
-        return isElementPresent(By.xpath("//*[text()='For QA Testing']"));
+    public void fillRegisterForm(NewAccount newAccount) {
+        fillInputField(By.id("FirstName"), newAccount.getFirstName());
+        fillInputField(By.id("LastName"), newAccount.getLastName());
+        fillInputField(By.id("Email"), newAccount.getEmail());
+        fillInputField(By.id("Password"), newAccount.getPassword());
+        fillInputField(By.id("ConfirmPassword"), newAccount.getConfirmPassword());
+    }
+
+    public void clickOnRegistrationButton() {
+        clickOnElement(By.xpath("//*[@id='register-button']"));
+    }
+
+
+    public boolean isConfirmationPresent() {
+        return isElementPresent(By.xpath("//div[@class='result']"));
 
     }
 

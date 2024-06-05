@@ -15,36 +15,30 @@ public class LoginPageHelper extends BaseHelper {
         return isElementPresent(By.xpath("//*[text()='Sign Out']"));
     }
 
+    public boolean isLogOutButtonPresent() {
+        return isElementPresent(By.xpath("//*[text()='Log out']"));
+    }
+
+    public void clickOnLoginLink(){
+        clickOnElement(By.xpath("//*[text()='Log in']"));
+    }
+
+    public void clickOnLoginButton(){
+        clickOnElement(By.xpath("//input[@class='button-1 login-button']"));
+    }
+
     public boolean isLoginLinkPresent() {
-        return isElementPresent(By.xpath("//*[text()='LOGIN']"));
-
-    }
-
-    public void clickOnLoginLink() {
-        clickOnElement(By.xpath("//*[text()='LOGIN']"));
-    }
-
-    public void clickOnLoginButton() {
-        clickOnElement(By.name("login"));
-    }
-
-    public void clickOnRegistrationButton() {
-        clickOnElement(By.name("registration"));
-    }
-
-    public void clickOnSigOutButton() {
-        clickOnElement(By.xpath("//*[text()='Sign Out']"));
+        return isElementPresent(By.xpath("//*[text()='Log in']"));
     }
 
     public void fillLoginRegisterForm(User user) {
-        fillInputField(By.name("email"), user.getEmail());
-        fillInputField(By.name("password"), user.getPassword());
+        fillInputField(By.id("Email"), user.getEmail());
+        fillInputField(By.id("Password"), user.getPassword());
     }
 
-//    By.xpath("//*[text()='Sign Out']")
-
-//    new User("manuelgm.com", "Manuel1234$")
-//    (By.xpath("//*[contains(text(), '401')]")
+    public void clickOnLogOutButton(){
+        clickOnElement(By.xpath("//*[text()='Log out']"));
+    }
 }
 
 
