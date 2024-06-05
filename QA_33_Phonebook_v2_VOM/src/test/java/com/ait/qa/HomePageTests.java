@@ -1,3 +1,4 @@
+package com.ait.qa;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -7,12 +8,10 @@ public class HomePageTests extends BaseTest {
 
     @BeforeMethod
     void precondition() {
-        if (!app.getHomePageHelper().checkHomeComponentIsPresent()) {
-            app.getHomePageHelper().clickOnHomeLink();
-        }
+        app.getHomePageHelper().clickOnHomeLink();
     }
 
-    @Test
+    @Test(description = "Проверка домашней страницы", groups = {"Positive"})
     void checkHomePage() {
         Assert.assertTrue(app.getHomePageHelper().checkHomeComponentIsPresent());
         Assert.assertTrue(app.getHomePageHelper().checkReactAppInfoIsPresent());

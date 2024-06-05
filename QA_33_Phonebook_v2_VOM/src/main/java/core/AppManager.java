@@ -1,14 +1,14 @@
 package core;
 
+import model.Contact;
 import model.User;
-import org.openqa.selenium.UsernameAndPassword;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page_helpers.ContactHelper;
 import page_helpers.HomePageHelper;
 import page_helpers.UserHelper;
 
@@ -17,12 +17,14 @@ import java.time.Duration;
 public class AppManager {
     public static WebDriver driver;
     public static WebDriverWait wait;
-    public static User TEST_USER = new User("manuel@gm.com", "Manuel1234$");
+    public static final User TEST_USER = new User("manuel@gm.com", "Manuel1234$");
+    public static final Contact TEST_CONTACT = new Contact("Test", "Testoviy", "1234567890", "test@test.com", "testAddress", "TestDesc");
     static final String URL_PHONE_BOOK = "https://telranedu.web.app";
     private String browser;
 
     private HomePageHelper homePageHelper;
     private UserHelper userHelper;
+    private ContactHelper contactHelper;
 
     public AppManager(String browser) {
         this.browser = browser;
@@ -52,6 +54,7 @@ public class AppManager {
 
         homePageHelper = new HomePageHelper(driver, wait);
         userHelper = new UserHelper(driver, wait);
+        contactHelper = new ContactHelper(driver, wait);
     }
 
     public HomePageHelper getHomePageHelper() {
@@ -60,6 +63,10 @@ public class AppManager {
 
     public UserHelper getUserHelper() {
         return userHelper;
+    }
+
+    public ContactHelper getContactHelper() {
+        return contactHelper;
     }
 
     public void stop() {

@@ -1,0 +1,26 @@
+22:08:25.475 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.startTests()]. Static configuration methods can cause unexpected behavior.
+22:08:25.478 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.stopTests()]. Static configuration methods can cause unexpected behavior.
+22:08:25.489 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.startTests()]. Static configuration methods can cause unexpected behavior.
+22:08:25.490 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.stopTests()]. Static configuration methods can cause unexpected behavior.
+22:08:25.497 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.startTests()]. Static configuration methods can cause unexpected behavior.
+22:08:25.498 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.stopTests()]. Static configuration methods can cause unexpected behavior.
+22:08:25.502 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.startTests()]. Static configuration methods can cause unexpected behavior.
+22:08:25.503 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.stopTests()]. Static configuration methods can cause unexpected behavior.
+22:08:27.296 [Test worker] INFO  com.ait.qa.BaseTest -- Start testfailedAddContactTest
+22:08:29.785 [Test worker] INFO  com.ait.qa.BaseTest -- PASSED: failedAddContactTest
+22:08:29.786 [Test worker] INFO  com.ait.qa.BaseTest -- ===================================================
+22:08:29.790 [Test worker] INFO  com.ait.qa.BaseTest -- Start testsuccessAddContactTest
+22:08:43.880 [Test worker] INFO  com.ait.qa.BaseTest -- PASSED: successAddContactTest
+22:08:43.880 [Test worker] INFO  com.ait.qa.BaseTest -- ===================================================
+22:08:43.884 [Test worker] INFO  com.ait.qa.BaseTest -- Start testcheckHomePage
+22:08:43.942 [Test worker] INFO  com.ait.qa.BaseTest -- PASSED: checkHomePage
+22:08:43.943 [Test worker] INFO  com.ait.qa.BaseTest -- ===================================================
+22:08:43.945 [Test worker] INFO  com.ait.qa.BaseTest -- Start testloginNegativeTest
+22:08:49.708 [Test worker] INFO  com.ait.qa.BaseTest -- PASSED: loginNegativeTest
+22:08:49.709 [Test worker] INFO  com.ait.qa.BaseTest -- ===================================================
+22:08:49.710 [Test worker] INFO  com.ait.qa.BaseTest -- Start testloginPositiveTest
+22:08:50.219 [Test worker] INFO  com.ait.qa.BaseTest -- PASSED: loginPositiveTest
+22:08:50.219 [Test worker] INFO  com.ait.qa.BaseTest -- ===================================================
+22:08:50.222 [Test worker] INFO  com.ait.qa.BaseTest -- Start testregistrationPositiveTest
+22:08:56.007 [Test worker] INFO  com.ait.qa.BaseTest -- PASSED: registrationPositiveTest
+22:08:56.007 [Test worker] INFO  com.ait.qa.BaseTest -- ===================================================
