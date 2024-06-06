@@ -1,5 +1,6 @@
 package page_helpers;
 
+import io.qameta.allure.Step;
 import model.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,14 +12,17 @@ public class ContactHelper extends BaseHelper {
         super(driver, wait);
     }
 
+    @Step("Нажимаем на кнопку 'ADD'")
     public void clickOnAddLink() {
         clickOnElement(By.cssSelector("[href='/add']"));
     }
 
+    @Step("Нажимаем на кнопку 'Save'")
     public void clickOnSaveButton() {
         clickOnElement(By.xpath("//*[text()='Save']"));
     }
 
+    @Step("Заполняем данные нового контакта")
     public void fillAddContact(Contact contact) {
         fillInputField(By.cssSelector("[placeholder='Name']"), contact.getName());
         fillInputField(By.cssSelector("[placeholder='Last Name']"), contact.getLastName());
@@ -28,15 +32,15 @@ public class ContactHelper extends BaseHelper {
         fillInputField(By.cssSelector("[placeholder='description']"), contact.getDescription());
     }
 
+    @Step("Проверяем что контакт добавился")
     public boolean contactIsPresent(Contact contact) {
         return isElementPresent(By.xpath(String.format("//h2[text()='%s']", contact.getName())));
     }
 
+    @Step("Удаляем контакт")
     public void removeContact(Contact contact) {
         clickOnElement(By.xpath(String.format("//h2[text()='%s']", contact.getName())));
         clickOnElement(By.xpath("//*[text()='Remove']"));
         waitInSeconds(2);
     }
-
-
 }

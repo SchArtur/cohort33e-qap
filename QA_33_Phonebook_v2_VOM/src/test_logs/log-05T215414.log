@@ -1,5 +1,0 @@
-21:54:15.053 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.startTests()]. Static configuration methods can cause unexpected behavior.
-21:54:15.057 [Test worker] WARN  org.testng.internal.Configuration -- Detected a static method [com.ait.qa.BaseTest.stopTests()]. Static configuration methods can cause unexpected behavior.
-21:54:17.477 [Test worker] INFO  com.ait.qa.BaseTest -- Start testsuccessAddContactTest
-21:54:22.311 [Test worker] INFO  com.ait.qa.BaseTest -- PASSED: successAddContactTest
-21:54:22.311 [Test worker] INFO  com.ait.qa.BaseTest -- ===================================================
