@@ -40,16 +40,13 @@ public class AddItemToCart extends BaseTest {
         productItem.findElement(By.cssSelector("[value='Add to cart']")).click();
         waitInSeconds(3);
 
-//        clickOnElement(By.xpath("(//input[@value='Add to cart'])[2]"));
-
         int resultCountItems = getCountShopItem();
         System.out.println(resultCountItems);
 
         assertTrue(resultCountItems == startCountItems + 1);
 
-//        clickOnElement(By.xpath("//span[@class='cart-label']"));//Shopping cart
         clickOnElement(By.xpath("//*[text()='Shopping cart']"));//Shopping cart
-//        waitInSeconds(2);
+
         WebElement actualProductNameInCart = getElementBy(By.cssSelector("[class='product-name']"));
         assertEquals(productName, actualProductNameInCart.getText(), "Добавился не тот товар");
     }
@@ -59,7 +56,6 @@ public class AddItemToCart extends BaseTest {
         List<WebElement> listAElements = driver.findElements(By.name("removefromcart"));
         System.out.println(listAElements.size());
         for (int i = 0; i < listAElements.size(); i++) {
-//            waitInSeconds(1);
             listAElements.get(i).click();
         }
         clickOnElement(By.xpath("//input[@name='updatecart']"));

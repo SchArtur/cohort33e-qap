@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static core.AppManager.TEST_USER;
+
 public class UserHelper extends BaseHelper {
     public UserHelper(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -18,19 +20,19 @@ public class UserHelper extends BaseHelper {
         return isElementPresent(By.xpath("//*[text()='LOGIN']"));
     }
 
-    public void clickOnLoginLink(){
+    public void clickOnLoginLink() {
         clickOnElement(By.xpath("//*[text()='LOGIN']"));
     }
 
-    public void clickOnLoginButton(){
+    public void clickOnLoginButton() {
         clickOnElement(By.name("login"));
     }
 
-    public void clickOnRegistrationButton(){
+    public void clickOnRegistrationButton() {
         clickOnElement(By.name("registration"));
     }
 
-    public void clickOnSigOutButton(){
+    public void clickOnSigOutButton() {
         clickOnElement(By.xpath("//*[text()='Sign Out']"));
     }
 
@@ -39,8 +41,13 @@ public class UserHelper extends BaseHelper {
         fillInputField(By.name("password"), user.getPassword());
     }
 
-//    By.xpath("//*[text()='Sign Out']")
+    public String getMessageLoginFailed() {
+        return getElementBy(By.xpath("//*[contains(text(), 'Login Failed')]")).getText();
+    }
 
-//    new User("manuelgm.com", "Manuel1234$")
-//    (By.xpath("//*[contains(text(), '401')]")
+    public void loginTestUser() {
+        clickOnLoginLink();
+        fillLoginRegisterForm(TEST_USER);
+        clickOnLoginButton();
+    }
 }
