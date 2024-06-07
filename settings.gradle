@@ -4,4 +4,5 @@ include 'QA_33_Phonebook_v1'
 include 'QA_33_DemoShop'
 include 'QA_33_DemoShop2'
 include 'QA33_DemoShop'
+include 'QA33_1DemoShop'
 

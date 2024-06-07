@@ -80,6 +80,7 @@ public class AddToCartTest extends TestBase {
             e.printStackTrace();
         }
         //переходим в корзину для проверки добавлен ли выбранный товар
+
        /*WebElement cartLabel = waitForClickableElement(getElementBy("[class='cart-label']"));
         cartLabel.click();*/
         //clickOnElement(cssSelector("[class='cart-label']"));
