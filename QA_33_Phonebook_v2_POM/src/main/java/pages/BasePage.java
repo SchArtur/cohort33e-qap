@@ -1,37 +1,35 @@
-package page_helpers;
+package pages;
 
 import core.AppManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.SecureRandom;
 import java.time.Duration;
+import java.util.List;
 import java.util.Random;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class BaseHelper {
+public class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BaseHelper(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public BasePage() {
+        this.driver = AppManager.driver;
+        this.wait = AppManager.wait;
+        PageFactory.initElements(driver, this);
     }
 
     //    @Step("Получаем элемент с локатором - {0}")
-    protected WebElement getElementBy(By locator) {
-        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
-    }
-
-    //    @Step("Получаем элемент с локатором - {0} с ожиданием его кликабельности")
-    private WebElement waitForClickableElement(By locator) {
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    protected WebElement getElement(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     //    @Step("Ожидаем всплывающее уведомление")
@@ -47,8 +45,7 @@ public class BaseHelper {
     }
 
     //    @Step("Заполняем элемент с локатором {0}, значением {1}")
-    protected void fillInputField(By locator, String value) {
-        WebElement element = waitForClickableElement(locator);
+    protected void fillInputField(WebElement element, String value) {
         element.click();
         element.clear();
         element.sendKeys(value);
@@ -56,19 +53,18 @@ public class BaseHelper {
     }
 
     //    @Step("Делаем клик по элементу с локатором {0}")
-    protected void clickOnElement(By locator) {
-        WebElement element = waitForClickableElement(locator);
+    protected void clickOnElement(WebElement element) {
         element.click();
     }
 
     //    @Step("Проверяем наличие на экране элемента с локатором {0}")
-    protected void checkElementIsPresent(By locator) {
-        assertTrue(getElementBy(locator).isDisplayed(), String.format("Ожидаемый элемент с локатором %s не найден на странице", locator));
+    protected void checkElementIsPresent(WebElement element) {
+        assertTrue(element.isDisplayed(), "Ожидаемый элемент не найден на странице");
     }
 
     //    @Step("Проверяем наличие на экране элемента с локатором {0}")
-    protected boolean isElementPresent(By locator) {
-        return driver.findElements(locator).size() > 0;
+    protected boolean isElementPresent(List<WebElement> elements) {
+        return elements.size() > 0;
     }
 
     @Step("Генерируем случайные e-mail")

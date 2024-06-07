@@ -1,5 +1,6 @@
 package com.ait.qa;
 
+import core.DataProviders;
 import model.Contact;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -37,7 +38,33 @@ public class ContactTests extends BaseTest {
         Assert.assertTrue(app.getContactHelper().getAlertText().contains("Phone not valid"), "Сообщение в уведомлении не содержит 'Phone not valid' ");
     }
 
+    @Test(dataProvider = "addNewContact", dataProviderClass = DataProviders.class)
+    void successAddContactTestDataProvider(Contact contact) {
+        app.getContactHelper().clickOnAddLink();
+        app.getContactHelper().fillAddContact(contact);
+        app.getContactHelper().clickOnSaveButton();
+        app.getContactHelper().waitInSeconds(3);
+        Assert.assertTrue(app.getContactHelper().contactIsPresent(contact), "Контакт не добавлен");
+        app.getContactHelper().removeContact(contact);
+        app.getContactHelper().waitInSeconds(3);
+    }
 
+    @Test(dataProvider = "addNewContactFromCsvFile", dataProviderClass = DataProviders.class)
+    void successAddContactTestDataProviderFromCsv(Contact contact, String result) {
+        app.getContactHelper().clickOnAddLink();
+        app.getContactHelper().fillAddContact(contact);
+        app.getContactHelper().clickOnSaveButton();
+
+        if (result.equals("passed")) {
+            app.getContactHelper().waitInSeconds(3);
+            Assert.assertTrue(app.getContactHelper().contactIsPresent(contact), "Контакт не добавлен");
+            app.getContactHelper().removeContact(contact);
+            app.getContactHelper().waitInSeconds(1);
+        } else {
+            Assert.assertTrue(app.getContactHelper().getAlertText().contains("not valid:"), "Сообщение в уведомлении не содержит 'not valid'");
+        }
+
+    }
 
 
 }
