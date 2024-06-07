@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.lang.reflect.Method;
 
-import static page_helpers.BaseHelper.takeScreenshot;
+import static pages.BasePage.takeScreenshot;
 
 public class BaseTest {
     protected static AppManager app = new AppManager(System.getProperty("browser", Browser.CHROME.browserName()));
