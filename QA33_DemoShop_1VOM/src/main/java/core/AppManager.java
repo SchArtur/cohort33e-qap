@@ -21,7 +21,7 @@ public class AppManager {
     public static WebDriverWait wait;
 
     public static User LOGIN_USER = new User("Tramp@test.com", "Tramp123!");
-    public static RegisterForm REGISTER_USER= new RegisterForm ("male", "Tramp", "Tramp", "tramp1@test.com", "Tramp123!", "Tramp123!");
+    public static RegisterForm REGISTER_USER= new RegisterForm ("male", "NewTest", "NewTest", "tesr12@test.com", "Tramp123!", "Tramp123!");
     static final String DEMO_SHOP_URL = "https://demowebshop.tricentis.com/";
     private String browser;
 

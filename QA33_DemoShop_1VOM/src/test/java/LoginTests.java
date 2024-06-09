@@ -1,4 +1,6 @@
+import core.DataProviders;
 import io.qameta.allure.Step;
+import model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,4 +25,15 @@ public class LoginTests extends TestBase {
         Assert.assertTrue(app.getLoginHelper().isLogOutLinkPresent());
 
     }
+
+    @Test(dataProvider = "logInUsers", dataProviderClass = DataProviders.class)
+    void successLogInUsersTestDataProvider(User user) {
+        app.getLoginHelper().clickOnLoginLink();
+        app.getLoginHelper().fillLoginForm(user);
+        app.getLoginHelper().clickOnLoginButton();
+        Assert.assertTrue(app.getLoginHelper().isLogOutLinkPresent());
+
+    }
+
+
 }
