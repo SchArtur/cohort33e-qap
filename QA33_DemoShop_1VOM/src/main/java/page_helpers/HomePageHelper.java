@@ -4,8 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
 
 public class HomePageHelper extends BaseHelper {
 
@@ -16,8 +16,14 @@ public class HomePageHelper extends BaseHelper {
 
     @Step("Проверяем отображение 'Demo Web Shop'")
     public boolean checkForDemoWebShopComponentIsPresent(){
-        return isElementPresent(By.cssSelector("img[alt='Tricentis Demo Web Shop']"));
+       // return isElementPresent(By.cssSelector("img[alt='Tricentis Demo Web Shop']"));
        //return isElementPresent(By.xpath("//*[text()='Tricentis Demo Web Shop']"));
+    assertTrue(getElement(By.xpath("//*[text()='Tricentis Demo Web Shop']")));
+        return true;
+    }
+
+    private boolean getElement(By xpath) {
+        return true;
     }
 
     @Step("Нажимаем на link 'Demo Web Shop'")

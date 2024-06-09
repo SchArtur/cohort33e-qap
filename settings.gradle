@@ -5,4 +5,6 @@ include 'QA_33_DemoShop'
 include 'QA_33_DemoShop2'
 include 'QA33_DemoShop'
 include 'QA33_1DemoShop'
+include 'QA33_DemoShop_POM'
+include 'QA33_DemoShop_1VOM'
 

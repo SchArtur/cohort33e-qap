@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,7 +14,8 @@ public class LoginTests extends TestBase {
 
     }
 
-    @Test
+    @Test(description = "логин зарегистрированного пользователя", groups = {"Positive"})
+    @Step ("Проверка логина зарегистрированного пользователя")
     void loginPositiveTest() {
         app.getLoginHelper().clickOnLoginLink();
         app.getLoginHelper().fillLoginForm(LOGIN_USER);

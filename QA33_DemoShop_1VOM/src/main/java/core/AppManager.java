@@ -19,7 +19,8 @@ import java.time.Duration;
 public class AppManager {
     public static WebDriver driver;
     public static WebDriverWait wait;
-    public static User LOGIN_USER = new User("tramp1@test.com", "Tramp123!");
+
+    public static User LOGIN_USER = new User("Tramp@test.com", "Tramp123!");
     public static RegisterForm REGISTER_USER= new RegisterForm ("male", "Tramp", "Tramp", "tramp1@test.com", "Tramp123!", "Tramp123!");
     static final String DEMO_SHOP_URL = "https://demowebshop.tricentis.com/";
     private String browser;
@@ -59,6 +60,7 @@ public class AppManager {
         homePageHelper = new HomePageHelper(driver, wait);
         loginHelper = new LoginHelper(driver, wait);
         registerFormHelper = new RegisterFormHelper(driver, wait);
+        addToCartHelper = new AddToCartHelper(driver,wait);
     }
 
     public HomePageHelper getHomePageHelper() {
@@ -67,7 +69,7 @@ public class AppManager {
     public LoginHelper getLoginHelper(){
         return loginHelper;
     }
-
+    public AddToCartHelper addToCartHelper() {return addToCartHelper;}
     public RegisterFormHelper getRegisterFormHelper() {
         return registerFormHelper;
     }

@@ -1,5 +1,8 @@
 package model;
 
+import java.security.SecureRandom;
+import java.util.Random;
+
 public class RegisterForm {
     private String gender;
     private String firstName;
@@ -16,7 +19,17 @@ public class RegisterForm {
         this.password = password;
         this.confirmPassword = confirmPassword;
     }
-
+    public static String randomEmail() {
+        char[] chars = "0123456789abcdef".toCharArray();
+        Random random = new SecureRandom();
+        char[] result = new char[8];
+        for (int i = 0; i < result.length; i++) {
+            int randomIndex = random.nextInt(chars.length);
+            result[i] = chars[randomIndex];
+        }
+        String email = new String(result) + "@test.com";
+        return email;
+    }
     public String getGender() {
         return gender;
     }
@@ -65,16 +78,17 @@ public class RegisterForm {
         this.confirmPassword = confirmPassword;
     }
 
-  /*  @org.jetbrains.annotations.NotNull
-    public static String randomEmail() {
-        char[] chars = "0123456789abcdef".toCharArray();
-        Random random = new SecureRandom();
-        char[] result = new char[8];
-        for (int i = 0; i < result.length; i++) {
-            int randomIndex = random.nextInt(chars.length);
-            result[i] = chars[randomIndex];
-        }
-        String email = new String(result) + "@test.com";
-        return email;
-    }*/
+    @Override
+    public String toString() {
+        return "RegisterForm{" +
+                "gender='" + gender + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                '}';
+    }
+
+
 }
