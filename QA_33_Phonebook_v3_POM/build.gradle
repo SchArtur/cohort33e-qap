@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group = 'org.example'
+version = 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.10.1'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
+
+    implementation 'ch.qos.logback:logback-classic:1.5.5'
+    implementation 'io.qameta.allure:allure-testng:2.27.0'
+}
+
+test {
+    useTestNG()
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+}
+
+def registerTask(String taskName, String suitePath) {
+    tasks.register(taskName, Test) {
+        useTestNG() {
+            suites suitePath
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        testLogging {
+            events "passed", "skipped", "failed"
+            exceptionFormat "full"
+            showExceptions true
+            showCauses true
+            showStackTraces true
+        }
+        reports.junitXml.destination = file("${project.buildDir}/test-results/test")
+        finalizedBy('allureReport')
+    }
+}
+
+registerTask('regression', 'src/test/resources/regression.xml')
