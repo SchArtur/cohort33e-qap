@@ -40,6 +40,14 @@ public class BaseHelper {
     protected Alert getAlert(){
         return wait.until(ExpectedConditions.alertIsPresent());
     }
+
+    @Step("Получаем текст всплывающего уведомления и нажимаем 'accept'")
+    public String getAlertText() {
+        String allerText = getAlert().getText();
+        getAlert().accept();
+        return allerText;
+    }
+
     @Step ("Заполняем данные контакта")
     protected  void fillInputField(By locator, String value){
         WebElement element = waitForClickableElement(locator);
@@ -54,8 +62,8 @@ public class BaseHelper {
         WebElement element = waitForClickableElement(locator);
         element.click();
     }
-    @Step ("Ожидаем в секундах")
-    protected void waitInSeconds(int seconds){
+    @Step ("Ожидаем {0} секундах")
+    public void waitInSeconds(int seconds){
         try {
             Thread.sleep(Duration.ofSeconds(seconds).toMillis());
         } catch (InterruptedException e) {
