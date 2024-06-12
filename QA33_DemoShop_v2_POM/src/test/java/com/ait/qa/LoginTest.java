@@ -1,3 +1,7 @@
+package com.ait.qa;
+
+import core.DataProviders;
+import model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,10 +17,18 @@ public class LoginTest extends BaseTest{
         }
     }
 
-    @Test
+    @Test(description = "Проверка успешной авторизации", groups = {"Positive"})
     void loginPositiveTest(){
         app.getLoginHelper().clickOnLoginLink();
         app.getLoginHelper().fillLoginRegisterForm(TEST_USER);
+        app.getLoginHelper().clickOnLoginButton();
+        Assert.assertTrue(app.getLoginHelper().isLogOutButtonPresent());
+    }
+
+    @Test(dataProvider = "loginUsers", dataProviderClass = DataProviders.class)
+    void loginPositiveTestDataProvider(User user) {
+        app.getLoginHelper().clickOnLoginLink();
+        app.getLoginHelper().fillLoginRegisterForm(user);
         app.getLoginHelper().clickOnLoginButton();
         Assert.assertTrue(app.getLoginHelper().isLogOutButtonPresent());
     }

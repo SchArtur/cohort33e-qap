@@ -8,11 +8,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page_helpers.CreateAccountHelper;
-import page_helpers.HomePageHelper;
-import page_helpers.LoginHelper;
-import page_helpers.LoginPageHelper;
-import page_helpers.RegisterPageHelper;
+import page_helpers.CreateAccountPage;
+import page_helpers.HomePage;
+import page_helpers.LoginPage;
 
 import java.time.Duration;
 
@@ -26,11 +24,11 @@ public class AppManager {
     static final String URL_DEMO_WEBSHOP = "https://demowebshop.tricentis.com/";
     private String browser;
 
-    public CreateAccountHelper createAccountHelper;
-    public LoginHelper loginHelper;
-    public HomePageHelper homePageHelper;
-    public RegisterPageHelper registerPageHelper;
-    public LoginPageHelper loginPageHelper;
+    public static CreateAccountPage createAccountPage;
+    public static LoginPage loginPage;
+    public static HomePage homePage;
+    public static RegisterPage registerPage;
+    public LoginPage loginPage;
 
     public AppManager(String browser) {
         this.browser = browser;
@@ -59,31 +57,11 @@ public class AppManager {
         driver.manage().window().maximize();
         driver.get(URL_DEMO_WEBSHOP);
 
-        createAccountHelper = new CreateAccountHelper(driver, wait);
-        loginHelper = new LoginHelper(driver, wait);
-        homePageHelper = new HomePageHelper(driver, wait);
-        registerPageHelper = new RegisterPageHelper(driver, wait);
-        loginPageHelper = new LoginPageHelper(driver, wait);
-    }
-
-    public CreateAccountHelper getCreateAccountHelper() {
-        return createAccountHelper;
-    }
-
-    public LoginHelper getLoginHelper() {
-        return loginHelper;
-    }
-
-    public HomePageHelper getHomePageHelper() {
-        return homePageHelper;
-    }
-
-    public RegisterPageHelper getRegisterPageHelper() {
-        return registerPageHelper;
-    }
-
-    public LoginPageHelper getLoginPageHelper() {
-        return loginPageHelper;
+        createAccountPage = new CreateAccountPage();
+        loginPage = new LoginPage();
+        homePage = new HomePage();
+        registerPage = new RegisterPage();
+        loginPage = new LoginPage();
     }
 
     public void stop() {
