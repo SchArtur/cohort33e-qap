@@ -1,0 +1,26 @@
+package page_helpers;
+
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class RegisterPageHelper extends BaseHelper{
+
+    public RegisterPageHelper(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
+    }
+
+    @Step("Переходим на страницу регистрации")
+    public void clickOnHomeLink() {
+        clickOnElement(By.cssSelector("[href='/register']"));
+    }
+
+    @Step("Проверяем отображение 'Register'")
+    public boolean checkHomeComponentIsPresent() {
+        return isElementPresent(By.xpath("//h1[(text()='Register')]"));
+    }
+}

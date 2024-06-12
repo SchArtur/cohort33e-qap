@@ -2,12 +2,15 @@ package com.webshop.tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 public class LoginPageTests extends BaseTest {
 
     @Test
+    @Tag("@Positive")
+    @Tag("@SMOKE")
     @DisplayName("Проверка успешной авторизации")
     void loginTest () {
         clickOnElement(By.xpath("//*[text()='Log in']"));

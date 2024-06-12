@@ -19,7 +19,7 @@ public class BaseTest {
     WebDriver driver;
     WebDriverWait wait;
     static final String URL_DEMO_WEBSHOP = "https://demowebshop.tricentis.com/";
-    static final String LOGIN = "Login";
+    static final String LOGIN = "Log in";
     static final String REGISTRATION = "Registration";
     static final User TEST_USER = new User("AntonAntonov@gmail.com", "WvN3W$VUTA72T");
 
