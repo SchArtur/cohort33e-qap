@@ -6,4 +6,5 @@ include 'QA_33_Phonebook_v2_VOM'
 include 'QA33_DemoShop_v2_VOM'
 include 'QA_33_Phonebook_v2_POM'
 include 'QA33_DemoShop_v2_POM'
+include 'Google-POM_Selenium'
 
