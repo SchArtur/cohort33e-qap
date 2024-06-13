@@ -11,6 +11,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 public class AlertsPage extends BasePage {
 
 
@@ -79,6 +80,7 @@ public class AlertsPage extends BasePage {
 
   // Метод, который проверяет сообщение
   public void verifyMessage(String message) {
+
     assertTrue(promptResult.getText().contains(message));
   }
 }
