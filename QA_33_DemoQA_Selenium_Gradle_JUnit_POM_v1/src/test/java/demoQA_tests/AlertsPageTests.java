@@ -3,11 +3,20 @@ package demoQA_tests;
 import core.BaseTest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 
-import static core.AppManager.*;
+import static core.AppManager.alertsPage;
+import static core.AppManager.homePage;
+import static core.AppManager.sidePanel;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class) // ! Аннотация для запуска тестов в порядке возрастания
 @DisplayName("Тестовый класс для проверки алертов") // ! Аннотация для отображения названия тестового класса в отчете
