@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class LocatorTests extends BaseTest {
 
     @Test
@@ -23,7 +25,7 @@ public class LocatorTests extends BaseTest {
         // Ищем все элементы с тегом "a"
         List<WebElement> listAElements = driver.findElements(By.tagName("a"));
         // Проверяем, что список элементов не пуст
-        Assertions.assertTrue(!listAElements.isEmpty(), "Нет элементов с тэгом \"а\"");
+        assertTrue(!listAElements.isEmpty(), "Нет элементов с тэгом \"а\"");
 
         // Кликаем по элементу с текстом "LOGIN"
         getElementBy(By.linkText("LOGIN")).click();
@@ -32,7 +34,7 @@ public class LocatorTests extends BaseTest {
         WebElement elementByName = getElementBy(By.name("email"));
         WebElement elementByCss = getElementBy(By.cssSelector("[name='email']"));
         WebElement elementByxPath = getElementBy(By.xpath("//*[@name='email']"));
-        Assertions.assertTrue(elementByName.isDisplayed(), "elementByName нет на странице");
+        assertTrue(elementByName.isDisplayed(), "elementByName нет на странице");
     }
 
     @Test
@@ -41,25 +43,47 @@ public class LocatorTests extends BaseTest {
         // Открываем страницу
         driver.get(URL_ILCARRO);
         // Ищем элемент по id
-                                            //[id="city"]
+        //[id="city"]
         WebElement elementById = getElementBy(By.id("city"));
         // Проверяем, что элемент отображается на странице
-        Assertions.assertTrue(elementById.isDisplayed(), "elementById нет на странице");
+        assertTrue(elementById.isDisplayed(), "elementById нет на странице");
 
         // Ищем элемент по className
         WebElement elementByClassName = getElementBy(By.className("input-container"));
-        Assertions.assertTrue(elementByClassName.isDisplayed(), "elementByClassName нет на странице");
+        assertTrue(elementByClassName.isDisplayed(), "elementByClassName нет на странице");
 
         // Ищем элемент по className внутри элемента
         WebElement elementByClassNameByClassName = elementByClassName.findElement(By.className("input-label"));
-        Assertions.assertTrue(elementByClassNameByClassName.isDisplayed(), "elementByClassName нет на странице");
+        assertTrue(elementByClassNameByClassName.isDisplayed(), "elementByClassName нет на странице");
 
         // Ищем элемент по linkText
         WebElement elementByLinkText = getElementBy(By.linkText("Let the car work"));
-        Assertions.assertTrue(elementByLinkText.isDisplayed(), "elementByLinkText нет на странице");
+        assertTrue(elementByLinkText.isDisplayed(), "elementByLinkText нет на странице");
 
         // Ищем элемент по partialLinkText
         WebElement elementByPartialLinkText = getElementBy(By.partialLinkText("Let the"));
-        Assertions.assertTrue(elementByPartialLinkText.isDisplayed(), "elementByPartialLinkText нет на странице");
+        assertTrue(elementByPartialLinkText.isDisplayed(), "elementByPartialLinkText нет на странице");
     }
+
+    @Test
+    @DisplayName("Поиск одного единственного элемента")
+    void test3() {
+        driver.get(URL_DEMO_WEB_SHOP);
+//        <a href="/register" class="ico-register">Register</a>
+        assertTrue(getElementBy(By.cssSelector("[href='/register']")).isDisplayed());
+        assertTrue(getElementBy(By.xpath("//*[@href='/register']")).isDisplayed());
+        assertTrue(getElementBy(By.xpath("//*[contains(@href, 'register')]")).isDisplayed());
+
+        assertTrue(getElementBy(By.cssSelector("[class='ico-register']")).isDisplayed());
+        assertTrue(getElementBy(By.xpath("//*[@class='ico-register']")).isDisplayed());
+        assertTrue(getElementBy(By.xpath("//*[contains(@class,'ico-register')]")).isDisplayed());
+
+        assertTrue(getElementBy(By.linkText("Register")).isDisplayed());
+        assertTrue(getElementBy(By.xpath("//*[text()='Register']")).isDisplayed());
+
+        assertTrue(getElementBy(By.partialLinkText("Regist")).isDisplayed());
+        assertTrue(getElementBy(By.xpath("//*[contains(text(),'Regist')]")).isDisplayed());
+    }
+
+
 }

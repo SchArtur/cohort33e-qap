@@ -1,0 +1,1 @@
+{"uuid":"d7fc513e-e4a5-4935-846f-67a8c0787e8f","name":"com.ait.qa.BaseTest.stopTest","children":["7b9f9541-ec9e-4ea3-904c-2bce90cd55fd"],"description":"","befores":[],"afters":[{"name":"stopTest","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1718012807257,"stop":1718012807257}],"start":1718012807257,"stop":1718012807257}

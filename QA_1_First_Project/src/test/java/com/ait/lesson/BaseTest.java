@@ -20,6 +20,7 @@ public class BaseTest {
     //Адреса страниц
     protected static final String URL_PHONE_BOOK = "https://telranedu.web.app/home";
     protected static final String URL_ILCARRO = "https://ilcarro.web.app/search";
+    protected static final String URL_DEMO_WEB_SHOP = "https://demowebshop.tricentis.com";
     //Явное ожидание
     WebDriverWait wait;
 
@@ -71,5 +72,23 @@ public class BaseTest {
     protected void clickOnElement(By locator) {
         WebElement element = waitForClickableElement(locator);
         element.click();
+    }
+
+
+    protected void login(String email, String password, String LOGIN) {
+        clickOnElement(By.xpath("//a[contains(text(),'Log in')]"));
+        fillInputField(By.id("Email"), email);
+        fillInputField(By.id("Password"), password);
+        clickOnElement(By.xpath("//input[@value='Log in']"));
+
+    }
+
+
+    protected void waitInSeconds(int seconds) {
+        try{
+            Thread.sleep(Duration.ofSeconds(seconds).toMillis());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
