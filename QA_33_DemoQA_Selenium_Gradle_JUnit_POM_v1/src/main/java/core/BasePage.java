@@ -24,7 +24,7 @@ public class BasePage {
     }
 
     @Step("Открываем ссылку: [{url}]")
-    public void open (String url) {
+    public void open(String url) {
         driver.get(url);
     }
 
@@ -46,7 +46,7 @@ public class BasePage {
     }
 
     @Step("Кликаем по элементу: [{element}]")
-    protected void click(WebElement element) {
+    public void click(WebElement element) {
         element.click();
     }
 

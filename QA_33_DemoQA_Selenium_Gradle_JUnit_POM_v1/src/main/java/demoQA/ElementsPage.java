@@ -6,10 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class ElementsPage extends BasePage {
 
-    @FindBy(xpath = "//span[text()='Elements'])")
+    @FindBy(css = ".top-card:nth-child(1)")
     public WebElement elementsDemoQAButton;
 
-    @FindBy(xpath = "//span[text()='Text Box'])")
+    @FindBy(xpath = "//span[text()='Text Box']")
     public WebElement textBoxButton;
 
     public void clickOnElementButton() {

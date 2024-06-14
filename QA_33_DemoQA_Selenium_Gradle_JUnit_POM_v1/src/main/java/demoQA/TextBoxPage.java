@@ -4,6 +4,8 @@ import core.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.openqa.selenium.devtools.v125.debugger.Debugger.pause;
+
 public class TextBoxPage extends BasePage {
 
     @FindBy(id = "userName")
@@ -12,10 +14,10 @@ public class TextBoxPage extends BasePage {
     @FindBy(id = "userEmail")
     WebElement eMailFillIn;
 
-    @FindBy(xpath = "*(//*[@id='currentAddress'])[1])")
+    @FindBy(id="currentAddress")
     WebElement currentAddressFillIn;
 
-    @FindBy(xpath = "(//*[@id='permanentAddress'])[1])")
+    @FindBy(id="permanentAddress")
     WebElement permanentAddressFillIn;
 
     @FindBy(id = "submit")
@@ -75,19 +77,23 @@ public class TextBoxPage extends BasePage {
     }
 
 
+
+
+    public void  filledForm(String fullName, String email, String currentAddress, String permanentAddress) {
+        type(fullNameFillIn, fullName);
+        type(eMailFillIn,email);
+        pause();
+        type(currentAddressFillIn,currentAddress);
+        pause();
+        type(permanentAddressFillIn, permanentAddress);
+    }
+
     public void submitFilledForm() {
         click(submitButton);
+        System.out.println("Button is pressed");
     }
 
 
-    public String filledForm(String fullName, String email, String currentAddress, String permanentAddress) {
-        return "ElementsPage{" +
-                "nameSubmit=" + nameSubmit +
-                ", emailSubmit=" + emailSubmit +
-                ", currentAddressSubmit=" + currentAddressSubmit +
-                ", permanentAddressSubmit=" + permanentAddressSubmit +
-                '}';
-    }
 
 }
 

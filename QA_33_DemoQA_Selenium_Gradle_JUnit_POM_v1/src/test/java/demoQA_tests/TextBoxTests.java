@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TextBoxTests extends BaseTest {
+    @Test
     public void testFilledForm() {
 
 
@@ -26,13 +27,13 @@ public class TextBoxTests extends BaseTest {
 
        textBoxPage.filledForm(fullName, email, currentAddress, permanentAddress);
 
-       String expectedFormDetails = textBoxPage.filledForm(fullName, email, currentAddress, permanentAddress);
+      // expectedFormDetails = textBoxPage.filledForm(fullName, email, currentAddress, permanentAddress);
 
         assertEquals(fullName, textBoxPage.getNameSubmit());
         assertEquals(email, textBoxPage.getEmailSubmit());
         assertEquals(currentAddress, textBoxPage.getCurrentAddressSubmit());
         assertEquals(permanentAddress, textBoxPage.getPermanentAddressSubmit());
 
-        System.out.println(expectedFormDetails);
+       // System.out.println(expectedFormDetails);
     }
     }
