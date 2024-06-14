@@ -1,8 +1,6 @@
 package core;
 
-import demoQA.AlertsPage;
-import demoQA.HomePage;
-import demoQA.SidePanel;
+import demoQA.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -18,6 +16,8 @@ public class AppManager {
   public static HomePage homePage;
   public static AlertsPage alertsPage;
   public static SidePanel sidePanel;
+  public static BrowserWindowsPage browserWindowsPage;
+  public static SelectMenuPage selectMenuPage;
 
   public static WebDriver driver; // Объявляем драйвер как статическое поле, чтобы иметь к нему доступ из любого места программы
   private final String browser; // Объявляем переменную browser, чтобы хранить значение браузера
@@ -51,6 +51,8 @@ public class AppManager {
     homePage = new HomePage();
     sidePanel = new SidePanel();
     alertsPage = new AlertsPage();
+    browserWindowsPage = new BrowserWindowsPage();
+    selectMenuPage = new  SelectMenuPage();
     // ! Открываем домашнюю страницу как первый шаг в каждом тесте
     basePage.open(homePage.HOME_PAGE_URL);
   }
