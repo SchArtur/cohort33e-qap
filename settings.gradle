@@ -7,4 +7,8 @@ include 'QA33_DemoShop'
 include 'QA33_1DemoShop'
 include 'QA33_DemoShop_POM'
 include 'QA33_DemoShop_1VOM'
+include 'DemoQA_Pom_Selenium'
+include 'Google-POM_Selenium'
+include 'QA_33_DemoQA_Selenium_Gradle_JUnit_POM_v1'
+include 'QA_33_HW_POM_Selenium_Gadle_JUnit'
 
