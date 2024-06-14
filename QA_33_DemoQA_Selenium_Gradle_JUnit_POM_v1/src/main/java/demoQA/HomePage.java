@@ -9,9 +9,16 @@ public final String HOME_PAGE_URL = "https://demoqa.com/";
 
 @FindBy(css = ".top-card:nth-child(3)")
   WebElement alertsFrameWindow;
+  @FindBy(css = ".top-card:nth-child(4)")
+  WebElement widgets;
 
-  public void getAlertsFrameWindow() {
-    alertsFrameWindow.click();
-    new SidePanel();
+  public SidePanel getAlertsFrameWindow() {
+    click(alertsFrameWindow);
+   return new SidePanel();
+  }
+
+  public SidePanel getWidgets() {
+    click(widgets);
+    return new SidePanel();
   }
 }

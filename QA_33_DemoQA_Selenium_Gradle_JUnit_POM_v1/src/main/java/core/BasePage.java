@@ -2,29 +2,31 @@ package core;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 
 public class BasePage {
   protected static WebDriver driver;
+  JavascriptExecutor js;
 
   public BasePage() {
     driver = AppManager.driver;
+    js = (JavascriptExecutor) driver;
     PageFactory.initElements(driver, this);
   }
 
   @Step("Открываем ссылку: [{url}]")
-  public void open (String url) {
+  public void open(String url) {
     driver.get(url);
   }
 
@@ -46,8 +48,14 @@ public class BasePage {
   }
 
   @Step("Кликаем по элементу: [{element}]")
-  protected void click(WebElement element) {
+  public void click(WebElement element) {
     element.click();
+  }
+
+  @Step("Кликаем по элементу с JS: [{element}]")
+  protected void clickJS(WebElement element, int x, int y) {
+    js.executeScript("window.scrollBy(" + x + "," + y + ")");
+    click(element);
   }
 
   @Step("Вводим текст: [{text}] в элемент: [{element}]")
@@ -57,5 +65,11 @@ public class BasePage {
       element.clear();
       element.sendKeys(text);
     }
+  }
+
+  // Метод, который будет искать текст в локаторе
+  public boolean shouldHaveText(WebElement element, String text, int timeout) {
+    System.out.println("ТЕКСТ ПРОВЕРЕН: [" + text + "] В ЭЛЕМЕНТЕ: [" + element.getTagName() + "]");
+    return new WebDriverWait(driver, Duration.ofSeconds(timeout)).until(ExpectedConditions.textToBePresentInElement(element, text));
   }
 }
