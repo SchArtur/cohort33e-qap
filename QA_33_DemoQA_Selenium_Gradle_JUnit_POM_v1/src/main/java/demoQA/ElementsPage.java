@@ -12,8 +12,9 @@ public class ElementsPage extends BasePage {
     @FindBy(xpath = "//span[text()='Text Box']")
     public WebElement textBoxButton;
 
-    public void clickOnElementButton() {
+    public ElementsPage clickOnElementButton() {
         click(elementsDemoQAButton);
+        return new ElementsPage();
     }
 
     public void clickOnTextButton() {

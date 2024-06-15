@@ -2,10 +2,7 @@ package core;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.PageFactory;
 
@@ -49,7 +46,11 @@ public class BasePage {
     public void click(WebElement element) {
         element.click();
     }
-
+    public void clickJS(WebElement element, int x, int y){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(" + x + "," + y + ")");
+        element.click();
+    }
     @Step("Вводим текст: [{text}] в элемент: [{element}]")
     public void type(WebElement element, String text) {
         if (text != null) {

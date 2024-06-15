@@ -1,9 +1,8 @@
 package core;
 
-import demoQA.AlertsPage;
-import demoQA.HomePage;
-import demoQA.SidePanel;
+import demoQA.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,11 +12,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AppManager {
     public static BasePage basePage;
     public static HomePage homePage;
     public static AlertsPage alertsPage;
     public static SidePanel sidePanel;
+    public static ElementsPage elementsPage;
+    public static TextBoxPage textBoxPage;
+
 
     public static WebDriver driver; // Объявляем драйвер как статическое поле, чтобы иметь к нему доступ из любого места программы
     private final String browser; // Объявляем переменную browser, чтобы хранить значение браузера
@@ -51,6 +55,8 @@ public class AppManager {
         homePage = new HomePage();
         sidePanel = new SidePanel();
         alertsPage = new AlertsPage();
+        elementsPage = new ElementsPage();
+        textBoxPage = new TextBoxPage();
         // ! Открываем домашнюю страницу как первый шаг в каждом тесте
         basePage.open(homePage.HOME_PAGE_URL);
     }
@@ -66,4 +72,5 @@ public class AppManager {
         } catch (IOException ignored) {
         }
     }
+
 }
