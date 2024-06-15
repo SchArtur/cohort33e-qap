@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.RepeatedTest;
 
 import static core.AppManager.basePage;
-
+@DisplayName("Тестовый класс для проверки домашней страницы")
 public class HomePageTests extends BaseTest {
 
   @BeforeEach
   public void precondition() {
-    //Указываем предусловия для тестов тут
+    basePage.hideAds();
   }
 
   @Feature("Home page tests") // * Заголовок в отчете Allure
@@ -22,9 +22,9 @@ public class HomePageTests extends BaseTest {
   @DisplayName("Открыть {Домашняя страница DemoQA}") // * Название теста
   @Order(1)
   //@Test
-  @RepeatedTest(value = 5, name = "{displayName} :: итерация [{currentRepetition}] из [{totalRepetitions}]")
+  @RepeatedTest(value = 3, name = "{displayName} :: итерация [{currentRepetition}] из [{totalRepetitions}]")
   public void searchTest() {
-    basePage.open("https://demoqa.com/");
+    basePage.open("https://demoqa.com/").hideAds();
   }
 }
 

@@ -21,10 +21,10 @@ public class SelectMenuPage extends BasePage {
     select.selectByVisibleText(color);
 
     List<WebElement> options = select.getOptions();
-    System.out.println("[" + select.getFirstSelectedOption().getText() + "] это первый элемент в списке.");
+    System.out.println("[" + options.get(0).getText() + "] это первый элемент в списке.");
 
     for (WebElement listItem : options) {
-      System.out.println("[" + listItem.getText() + "] " + listItem.getAttribute("value"));
+      System.out.println("Выбран [" + listItem.getText() + "] со значением [" + listItem.getAttribute("value")+ "].");
     }
   }
 
@@ -42,9 +42,9 @@ public class SelectMenuPage extends BasePage {
     List<WebElement> options = select.getOptions();
     if (select.isMultiple()) {
       for (int index : indices) {
-        if (index >=0 && index < options.size()){
+        if (index >= 0 && index < options.size()) {
           select.selectByIndex(index);
-        } else{
+        } else {
           System.out.println("Индекс " + index + " выходит за пределы допустимого диапазона");
         }
       }

@@ -1,8 +1,9 @@
 rootProject.name = 'cohort33e-qap'
 include 'QA_1_First_Project'
+include 'QA_33_DemoQA_Selenium_Gradle_JUnit_POM_v1'
 include 'QA_33_Phonebook_v1'
 include 'QA_33_Phonebook_v2_VOM'
 include 'QA_33_Phonebook_v2_POM'
 include 'QA_33_Phonebook_v3_POM'
-include 'QA_33_DemoQA_Selenium_Gradle_JUnit_POM_v1'
+
 

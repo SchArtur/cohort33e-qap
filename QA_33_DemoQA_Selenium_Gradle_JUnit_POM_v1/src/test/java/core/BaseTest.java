@@ -22,7 +22,7 @@ import static core.BaseTest.app;
 */
 @ExtendWith(BaseTestLogger.class)
 public class BaseTest {
-  protected static AppManager app = new AppManager(System.getProperty("browser", "chrome"));
+  public static AppManager app = new AppManager(System.getProperty("browser", "chrome"));
   public static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
 
   @BeforeEach
@@ -35,21 +35,21 @@ public class BaseTest {
 
   @AfterAll
   static void afterAll() {
-    //app.stop();
-    LOGGER.info("**************************** ВСЕ ТЕСТЫ ЗАВЕЛИЛИСЬ ****************************");
+    app.stop();
+    LOGGER.info("**************************** ВСЕ ТЕСТЫ ЗАВЕРШЕНЫ ****************************");
   }
 }
 
 // ! BaseTestLogger имплементируют TestWatcher.
 // ! Он позволяет перехватывать события результата выполнения тестов и выполнять действия в зависимости от результата.
 class BaseTestLogger implements TestWatcher {
-  private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
+  public static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
   public static long startTime; // * Статическое поле для хранения времени начала теста
 
   @Override // * Переопределяем метод testSuccessful класса TestWatcher, который вызывается после успешного выполнения теста
   public void testSuccessful(ExtensionContext context) {
     long endTime = (System.currentTimeMillis() - startTime); // * Вычисляем время выполнения теста
-    //app.stop();
+    app.stop();
     LOGGER.info("PASSED TEST: [{}], TIME for test execution: [{}] ms", context.getRequiredTestMethod().getName(), endTime);
   }
 
@@ -57,7 +57,7 @@ class BaseTestLogger implements TestWatcher {
   public void testFailed(ExtensionContext context, Throwable cause) {
     takeScreenshot();
     long endTime = (System.currentTimeMillis() - startTime);
-   app.stop();
+    app.stop();
     LOGGER.error("FAILED TEST: [{}], TIME for test execution: [{}] ms", context.getRequiredTestMethod().getName(), endTime);
   }
 

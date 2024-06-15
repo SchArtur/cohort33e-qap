@@ -19,12 +19,20 @@ public class SidePanel extends BasePage {
 
   @FindBy(xpath = "//span[text()='Browser Windows']")
   WebElement browserButton;
-  public void selectBrowserWindows() {
+  public SidePanel selectBrowserWindows() {
     click(browserButton);
+    return this;
   }
 
   public SelectMenuPage getSelectMenu() {
     clickJS(selectMenu,0,500);
     return new SelectMenuPage();
+  }
+
+  @FindBy(xpath = "//span[.='Practice Form']")
+  WebElement practiceForm;
+  public PracticeFormPage selectPracticeForm() {
+    click(practiceForm);
+    return new PracticeFormPage();
   }
 }
