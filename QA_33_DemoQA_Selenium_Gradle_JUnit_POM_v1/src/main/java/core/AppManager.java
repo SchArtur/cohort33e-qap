@@ -1,8 +1,6 @@
 package core;
 
-import demoQA.AlertsPage;
-import demoQA.HomePage;
-import demoQA.SidePanel;
+import demoQA.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -18,6 +16,14 @@ public class AppManager {
     public static HomePage homePage;
     public static AlertsPage alertsPage;
     public static SidePanel sidePanel;
+  //  public static BrowserWindowsPage browserWindowsPage;
+  //  public static SelectMenuPage selectMenuPage;
+    public static TextBoxPage textBoxPage;
+    public static ElementsPage elementsPage;
+  //  public static ButtonsPage buttonsPage;
+   // public static PracticeFormPage practiceFormPage;
+    public  static DataPickerPage dataPickerPage;
+
 
     public static WebDriver driver; // Объявляем драйвер как статическое поле, чтобы иметь к нему доступ из любого места программы
     private final String browser; // Объявляем переменную browser, чтобы хранить значение браузера
@@ -51,10 +57,17 @@ public class AppManager {
         homePage = new HomePage();
         sidePanel = new SidePanel();
         alertsPage = new AlertsPage();
+       // browserWindowsPage = new BrowserWindowsPage();
+      //  selectMenuPage = new  SelectMenuPage();
+        textBoxPage = new TextBoxPage();
+        elementsPage = new ElementsPage();
+      //  buttonsPage = new ButtonsPage();
+      //  practiceFormPage = new PracticeFormPage();
+        dataPickerPage = new DataPickerPage();
+
         // ! Открываем домашнюю страницу как первый шаг в каждом тесте
         basePage.open(homePage.HOME_PAGE_URL);
     }
-
     // Метод для завершения работы драйвера
     public void stop() {
         // * Для владельцев ОС Windows, у которых не закрывается chromedriver.exe после завершения тестов и дальше висит в Диспетчере задач
@@ -62,8 +75,14 @@ public class AppManager {
             driver.quit();
         }
         try {
-            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+            String[] cmdarray = {"taskkill", "/F", "/IM", "chromedriver.exe", "/T"};
+            Runtime.getRuntime().exec(cmdarray);
         } catch (IOException ignored) {
         }
     }
 }
+
+
+
+
+
