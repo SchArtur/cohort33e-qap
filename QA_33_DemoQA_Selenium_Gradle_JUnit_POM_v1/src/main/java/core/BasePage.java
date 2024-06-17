@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -69,6 +72,26 @@ public class BasePage {
       element.clear();
       element.sendKeys(text);
     }
+  }
+
+  //Метод отправляет запрос и получает ответ по ссылке
+  public boolean isLinkValid(String link){
+      try {
+          URL url = new URL(link);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setConnectTimeout(5000);
+        connection.connect();
+        return connection.getResponseCode() < 500;
+      } catch (MalformedURLException e) {
+          throw new RuntimeException(e);
+      } catch (IOException e) {
+          throw new RuntimeException(e);
+      }
+  }
+
+  // Метод проверяет наличие картинки
+  public boolean isImageValid(WebElement image) {
+    return (boolean) js.executeScript("return (typeof arguments[0].naturalWidth != undefined && arguments[0].naturalWidth > 0);", image);
   }
 
   // Метод, который будет искать текст в локаторе
