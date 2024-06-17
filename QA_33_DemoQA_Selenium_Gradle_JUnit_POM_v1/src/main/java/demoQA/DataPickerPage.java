@@ -40,32 +40,37 @@ public class DataPickerPage extends BasePage {
     public Scanner random;
 
 
-    public void openDatePicker() {
+    public DataPickerPage openDatePicker() {
         datePicker.click();
+        return this;
     }
 
-    public void openDateMonthYearInput() {
+    public DataPickerPage openDateMonthYearInput() {
         dateMonthYearInput.click();
+        return this;
     }
 
-    public void openDateAndTimeInput() {
+    public DataPickerPage openDateAndTimeInput() {
         dateAndTimeInput.click();
+        return this;
     }
 
-    public void fillDateAndTimeInput(String date) {
+    public DataPickerPage fillDateAndTimeInput(String date) {
         dateAndTimeInput.click();
         dateAndTimeInput.sendKeys(Keys.COMMAND + "A");
         dateAndTimeInput.sendKeys(date);
         dateAndTimeInput.sendKeys(Keys.ENTER);
+        return this;
     }
 
-    public void checkDateInDateAndTimeInput(String date) {
+    public DataPickerPage checkDateInDateAndTimeInput(String date) {
 //        waitInSeconds(5);
 //        WebElement element = driver.findElement(By.id("dateAndTimePickerInput"));
         Assertions.assertEquals(date, dateAndTimeInput.getAttribute("value"));
+        return this;
     }
 
-    public void monthSelectFromList(String month) {
+    public DataPickerPage monthSelectFromList(String month) {
         Select select = new Select(monthSelect);
         select.selectByVisibleText(month);
 //        List<WebElement> options = select.getOptions();
@@ -73,9 +78,10 @@ public class DataPickerPage extends BasePage {
 //        for (WebElement listItem : options) {
 //            System.out.println("There is chosen [" + listItem.getText() + "] with index [" + listItem.getAttribute("value") + "]");
 //        }
+        return this;
     }
 
-    public void yearSelectFromList(String year) {
+    public DataPickerPage yearSelectFromList(String year) {
         Select select = new Select(yearSelect);
         select.selectByVisibleText(year);
 //        List<WebElement> options = select.getOptions();
@@ -83,11 +89,13 @@ public class DataPickerPage extends BasePage {
 //        for (WebElement listItem : options) {
 //            out.println("There is chosen [" + listItem.getText() + "] with index [" + listItem.getAttribute("value") + "]");
 //        }
+        return this;
     }
 
-    public void daySelectFromList(String day) {
+    public DataPickerPage daySelectFromList(String day) {
         String xpath = String.format("//*[text() = '%s']", day);
      daySelect.findElement(By.xpath(xpath)).click();
+        return this;
     }
 
     public void timeSelectFromList(String time) {

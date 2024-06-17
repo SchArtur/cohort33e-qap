@@ -23,7 +23,12 @@ public class DataPickerTest extends BaseTest {
             String randomTime = randomDateAndTime[3];
 
             // Open the Date Picker
-            dataPickerPage.openDatePicker();
+            dataPickerPage
+                    .openDatePicker()
+                    .openDateMonthYearInput()
+                    .monthSelectFromList(randomMonth)
+                    .yearSelectFromList(randomYear)
+                    .daySelectFromList((randomDay));
 
             // Select date and
             dataPickerPage.openDateMonthYearInput();
