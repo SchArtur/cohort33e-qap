@@ -62,6 +62,14 @@ public class BasePage {
         click(element);
     }
 
+    public void waitInSeconds(int seconds) {
+        try {
+            Thread.sleep(Duration.ofSeconds(seconds).toMillis());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Step("Вводим текст: [{text}] в элемент: [{element}]")
     public void type(WebElement element, String text) {
         if (text != null) {
