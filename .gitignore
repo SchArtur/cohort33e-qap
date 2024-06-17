@@ -43,3 +43,4 @@ bin/
 .DS_Store
 /.gradle/
 /.idea/
+/QA_33_DemoQA_Selenium_Gradle_JUnit_POM_v1/allure-results/
