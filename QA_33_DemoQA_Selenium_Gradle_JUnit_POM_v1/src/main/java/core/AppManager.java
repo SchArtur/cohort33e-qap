@@ -25,6 +25,8 @@ public class AppManager {
     public static PracticeFormPage practiceFormPage;
     public static BrokenLinksImagesPage brokenLinksImagesPage;
     public static DroppablePage droppablePage;
+    public  static DataPickerPage dataPickerPage;
+    public static LinksPage linksPage;
 
     public static WebDriver driver; // Объявляем драйвер как статическое поле, чтобы иметь к нему доступ из любого места программы
     private final String browser; // Объявляем переменную browser, чтобы хранить значение браузера
@@ -66,6 +68,8 @@ public class AppManager {
         practiceFormPage = new PracticeFormPage();
         brokenLinksImagesPage = new BrokenLinksImagesPage();
         droppablePage = new DroppablePage();
+        dataPickerPage = new DataPickerPage();
+        linksPage = new LinksPage();
 
         // ! Открываем домашнюю страницу как первый шаг в каждом тесте
         basePage.open(homePage.HOME_PAGE_URL);

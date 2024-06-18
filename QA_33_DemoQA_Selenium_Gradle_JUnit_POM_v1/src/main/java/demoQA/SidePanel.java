@@ -10,6 +10,10 @@ public class SidePanel extends BasePage {
     WebElement alertsButton;
     @FindBy(xpath = "//span[text()='Broken Links - Images']")
     WebElement brokenLinksImages;
+
+    @FindBy(xpath = "//span[text()='Links']")
+    WebElement links;
+
     @FindBy(xpath = "//span[text()='Droppable']")
     WebElement droppable;
 
@@ -45,6 +49,10 @@ public class SidePanel extends BasePage {
     public BrokenLinksImagesPage clickOnBrokenLinksImages() {
         click(brokenLinksImages);
         return new BrokenLinksImagesPage();
+    }
+    public LinksPage clickOnLinks() {
+        click(links);
+        return new LinksPage();
     }
 
     public DroppablePage clickOnDroppable() {
