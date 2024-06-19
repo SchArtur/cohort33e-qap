@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DroppableDragablePage extends BasePage {
@@ -71,13 +73,9 @@ public class DroppableDragablePage extends BasePage {
         return this;
     }
 
-    public DroppableDragablePage dragPannel() {
-        return (DroppableDragablePage) List.of(draggableSimple, draggableAxisRestriction, draggableContainerRestriction, draggableCursorStyle);
-    }
+    List<WebElement> dragPannel = List.of(draggableSimple, draggableAxisRestriction, draggableContainerRestriction, draggableCursorStyle);
 
-    public DroppableDragablePage draggingElements() {
-        return (DroppableDragablePage) List.of(dragMe, onlyX, onlyY, containmentBox, childText, cursorTopLeft, cursorCenter, cursorBottom);
-    }
+    List draggingElements = List.of(dragMe, onlyX, onlyY, containmentBox, childText, cursorTopLeft, cursorCenter, cursorBottom);
 
     public DroppableDragablePage getDraggableTexts() {
         return (DroppableDragablePage) List.of(dragMe.getText(), onlyX.getText(), onlyY.getText(), containmentBox.getText(), childText.getText(), cursorTopLeft.getText(), cursorCenter.getText(), cursorBottom.getText());
@@ -88,11 +86,11 @@ public class DroppableDragablePage extends BasePage {
     }
 
     public DroppableDragablePage checkDraggablePosition(int expectedLeft, int expectedTop) {
-        List<WebElement> elements = (List<WebElement>) draggingElements();
+        List<WebElement> elements = draggingElements;
 
         for (WebElement element : elements) {
             Point location = element.getLocation();
-            Point actualLeft =element.getLocation();
+            Point actualLeft = element.getLocation();
             Point actualTop = element.getLocation();
 
             Assertions.assertEquals(actualLeft, expectedLeft, "Position left for element " + element + " does not match the expected value");

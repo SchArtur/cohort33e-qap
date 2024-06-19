@@ -22,10 +22,9 @@ public class AppManager {
     public static ElementsPage elementsPage;
     //  public static ButtonsPage buttonsPage;
     // public static PracticeFormPage practiceFormPage;
-    public  static DataPickerPage dataPickerPage;
+    public static DataPickerPage dataPickerPage;
     public static DroppableDragablePage droppableDragablePage;
     public static OnlyDragabblePage onlyDragabblePage;
-
 
 
     public static WebDriver driver; // Объявляем драйвер как статическое поле, чтобы иметь к нему доступ из любого места программы
@@ -48,7 +47,6 @@ public class AppManager {
             case "safari":
                 driver = new SafariDriver();
                 break;
-            case "chrome":
             default:
                 driver = new ChromeDriver();
         }
@@ -67,13 +65,14 @@ public class AppManager {
         //  buttonsPage = new ButtonsPage();
         //  practiceFormPage = new PracticeFormPage();
         dataPickerPage = new DataPickerPage();
-        droppableDragablePage = new DroppableDragablePage();
+//        droppableDragablePage = new DroppableDragablePage();
         onlyDragabblePage = new OnlyDragabblePage();
 
 
         // ! Открываем домашнюю страницу как первый шаг в каждом тесте
         basePage.open(homePage.HOME_PAGE_URL);
     }
+
     // Метод для завершения работы драйвера
     public void stop() {
         // * Для владельцев ОС Windows, у которых не закрывается chromedriver.exe после завершения тестов и дальше висит в Диспетчере задач

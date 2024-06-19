@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import java.util.Optional;
 
 import static core.BasePage.takeScreenshot;
-import static core.BaseTest.app;
 
 /*
 В Java, вы можете иметь несколько классов в одном .java-файле.
@@ -46,14 +45,16 @@ class BaseTestLogger implements TestWatcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
     public static long startTime; // * Статическое поле для хранения времени начала теста
 
-    @Override // * Переопределяем метод testSuccessful класса TestWatcher, который вызывается после успешного выполнения теста
+    @Override
+    // * Переопределяем метод testSuccessful класса TestWatcher, который вызывается после успешного выполнения теста
     public void testSuccessful(ExtensionContext context) {
         long endTime = (System.currentTimeMillis() - startTime); // * Вычисляем время выполнения теста
 //        app.stop();
         LOGGER.info("PASSED TEST: [{}], TIME for test execution: [{}] ms", context.getRequiredTestMethod().getName(), endTime);
     }
 
-    @Override // * Переопределяем метод testFailed класса TestWatcher, который вызывается после неудачного выполнения теста
+    @Override
+    // * Переопределяем метод testFailed класса TestWatcher, который вызывается после неудачного выполнения теста
     public void testFailed(ExtensionContext context, Throwable cause) {
         takeScreenshot();
         long endTime = (System.currentTimeMillis() - startTime);

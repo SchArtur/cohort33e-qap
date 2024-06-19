@@ -79,6 +79,12 @@ public class BasePage {
         }
     }
 
+    @Step("Делаем прокрутку экрана")
+    public BasePage scrollPage() {
+        js.executeScript("window.scrollBy(0,150)");
+        return this;
+    }
+
     // Метод, который будет искать текст в локаторе
     public boolean shouldHaveText(WebElement element, String text, int timeout) {
         LOGGER.info("ТЕКСТ ПРОВЕРЕН: [" + text + "] В ЭЛЕМЕНТЕ: [" + element.getTagName() + "]");

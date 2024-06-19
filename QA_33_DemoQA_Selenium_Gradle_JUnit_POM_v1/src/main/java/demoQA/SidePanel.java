@@ -51,13 +51,12 @@ public class SidePanel extends BasePage {
         return new BrokenLinksImagesPage();
     }*/
 
-    public DroppableDragablePage clickOnDroppableDragable() {
-       if(draggable.isDisplayed()) {
+    public OnlyDragabblePage clickOnDraggable() {
            click(draggable);
-       } else {
-           click(droppable);
-        }
+          return new OnlyDragabblePage();
+    }
 
-        return new DroppableDragablePage();
+    public void clickOnDroppable() {
+           click(droppable);
     }
 }
