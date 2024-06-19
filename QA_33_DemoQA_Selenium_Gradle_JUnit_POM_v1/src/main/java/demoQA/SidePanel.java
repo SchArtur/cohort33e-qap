@@ -30,7 +30,7 @@ public class SidePanel extends BasePage {
     }
 
     public SelectMenuPage getSelectMenu() {
-        clickJS(selectMenu, 0, 500);
+        scrollAndClickJS(selectMenu, 0, 500);
         return new SelectMenuPage();
     }
 

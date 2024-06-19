@@ -45,7 +45,7 @@ public class TextBoxPage extends BasePage {
 
   // Метод, который нажимает на кнопку "Submit"
   public TextBoxPage clickOnSubmitFilledFormButton() {
-    clickJS(submitButton, 0, 200);
+    scrollAndClickJS(submitButton, 0, 200);
     System.out.println("Button {Submit} is pressed");
     return new TextBoxPage();
   }
