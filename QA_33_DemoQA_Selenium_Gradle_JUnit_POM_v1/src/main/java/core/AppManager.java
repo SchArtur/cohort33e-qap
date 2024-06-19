@@ -16,13 +16,15 @@ public class AppManager {
     public static HomePage homePage;
     public static AlertsPage alertsPage;
     public static SidePanel sidePanel;
-  //  public static BrowserWindowsPage browserWindowsPage;
-  //  public static SelectMenuPage selectMenuPage;
+    //  public static BrowserWindowsPage browserWindowsPage;
+    //  public static SelectMenuPage selectMenuPage;
     public static TextBoxPage textBoxPage;
     public static ElementsPage elementsPage;
-  //  public static ButtonsPage buttonsPage;
-   // public static PracticeFormPage practiceFormPage;
+    //  public static ButtonsPage buttonsPage;
+    // public static PracticeFormPage practiceFormPage;
     public  static DataPickerPage dataPickerPage;
+    public static DroppableDragablePage droppableDragablePage;
+
 
 
     public static WebDriver driver; // Объявляем драйвер как статическое поле, чтобы иметь к нему доступ из любого места программы
@@ -57,13 +59,16 @@ public class AppManager {
         homePage = new HomePage();
         sidePanel = new SidePanel();
         alertsPage = new AlertsPage();
-       // browserWindowsPage = new BrowserWindowsPage();
-      //  selectMenuPage = new  SelectMenuPage();
+        // browserWindowsPage = new BrowserWindowsPage();
+        //  selectMenuPage = new  SelectMenuPage();
         textBoxPage = new TextBoxPage();
         elementsPage = new ElementsPage();
-      //  buttonsPage = new ButtonsPage();
-      //  practiceFormPage = new PracticeFormPage();
+        //  buttonsPage = new ButtonsPage();
+        //  practiceFormPage = new PracticeFormPage();
         dataPickerPage = new DataPickerPage();
+        droppableDragablePage = new DroppableDragablePage();
+
+
 
         // ! Открываем домашнюю страницу как первый шаг в каждом тесте
         basePage.open(homePage.HOME_PAGE_URL);
@@ -81,8 +86,3 @@ public class AppManager {
         }
     }
 }
-
-
-
-
-

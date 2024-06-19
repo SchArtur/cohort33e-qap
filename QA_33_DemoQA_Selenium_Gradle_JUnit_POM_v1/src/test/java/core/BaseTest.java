@@ -65,7 +65,7 @@ class BaseTestLogger implements TestWatcher {
     public void testDisabled(ExtensionContext context, Optional<String> reason) {
         takeScreenshot();
         long endTime = (System.currentTimeMillis() - startTime);
-       // app.stop();
+        // app.stop();
         LOGGER.warn("DISABLED TEST: [{}], TIME for test execution: [{}] ms", context.getRequiredTestMethod().getName(), endTime);
     }
 
@@ -73,7 +73,7 @@ class BaseTestLogger implements TestWatcher {
     public void testAborted(ExtensionContext context, Throwable cause) {
         takeScreenshot();
         long endTime = (System.currentTimeMillis() - startTime);
-       // app.stop();
+        // app.stop();
         LOGGER.warn("ABORTED TEST: [{}], TIME for test execution: [{}] ms", context.getRequiredTestMethod().getName(), endTime);
     }
 }

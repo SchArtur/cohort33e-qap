@@ -13,6 +13,10 @@ public class HomePage extends BasePage {
     WebElement widgets;
     @FindBy(css = ".card:nth-child(2)") //находим элемент формы
     WebElement forms;
+    @FindBy(xpath = "//h5[.='Elements']")
+    WebElement elements;
+    @FindBy(xpath = "//h5[.='Interactions']")
+    WebElement interactions;
 
 
     public SidePanel getAlertsFrameWindow() {
@@ -22,6 +26,16 @@ public class HomePage extends BasePage {
 
     public SidePanel getWidgets() {
         click(widgets);
+        return new SidePanel();
+    }
+
+    public SidePanel clickOnElements() {
+        click(elements);
+        return new SidePanel();
+    }
+
+    public SidePanel clickOnInteractions() {
+        click(interactions);
         return new SidePanel();
     }
 
