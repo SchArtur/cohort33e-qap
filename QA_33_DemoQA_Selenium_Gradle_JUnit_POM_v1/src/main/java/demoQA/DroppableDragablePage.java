@@ -92,8 +92,8 @@ public class DroppableDragablePage extends BasePage {
 
         for (WebElement element : elements) {
             Point location = element.getLocation();
-            int actualLeft =(element.getLocation();
-            int actualTop = location.getY();
+            Point actualLeft =element.getLocation();
+            Point actualTop = element.getLocation();
 
             Assertions.assertEquals(actualLeft, expectedLeft, "Position left for element " + element + " does not match the expected value");
             Assertions.assertEquals(actualTop, expectedTop, "Position top for element " + element + " does not match the expected value");

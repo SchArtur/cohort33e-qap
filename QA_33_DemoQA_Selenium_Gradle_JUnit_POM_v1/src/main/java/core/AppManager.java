@@ -24,6 +24,7 @@ public class AppManager {
     // public static PracticeFormPage practiceFormPage;
     public  static DataPickerPage dataPickerPage;
     public static DroppableDragablePage droppableDragablePage;
+    public static OnlyDragabblePage onlyDragabblePage;
 
 
 
@@ -67,7 +68,7 @@ public class AppManager {
         //  practiceFormPage = new PracticeFormPage();
         dataPickerPage = new DataPickerPage();
         droppableDragablePage = new DroppableDragablePage();
-
+        onlyDragabblePage = new OnlyDragabblePage();
 
 
         // ! Открываем домашнюю страницу как первый шаг в каждом тесте
