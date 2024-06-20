@@ -21,4 +21,10 @@ public class AddContactPageSteps extends BasePage {
     public void fillAddContact() {
         addContactPage.fillAddContact(TEST_CONTACT);
     }
+
+    @Тогда("заполняем данные контакта для добавления в записную книжку")
+    public void fillAddContact(Map<String, String> contactFields) {
+        Contact contact = new Contact(contactFields.get("name"), contactFields.get("lastName"), contactFields.get("phone"), contactFields.get("email"), contactFields.get("address"), contactFields.get("description"));
+        addContactPage.fillAddContact(contact);
+    }
 }

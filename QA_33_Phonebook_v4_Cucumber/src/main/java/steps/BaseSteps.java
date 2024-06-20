@@ -6,12 +6,16 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.When;
+import io.cucumber.java.ru.И;
 import model.User;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.Browser;
 import pages.BasePage;
 
-import static core.AppManager.TEST_USER;
-import static core.AppManager.navigationPanel;
+import java.util.List;
+
+import static core.AppManager.*;
 
 public class BaseSteps {
 
@@ -29,15 +33,15 @@ public class BaseSteps {
 
     @Before("@BeforeLogin")
     public static void precondition() {
-        if (!navigationPanel.isLoginLinkPresent()) {
-            navigationPanel.clickOnSigOutButton();
+        if (!navigationPanel.linkIsPresent(navigationPanel.loginLink)) {
+            navigationPanel.clickOnLink(navigationPanel.signOut);
         }
     }
 
-    @When("нет кнопки 'LOGIN' то нажимаем 'Sign Out'")
-    public void loginPrecondition() {
-        if (!navigationPanel.isLoginLinkPresent()) {
-            navigationPanel.clickOnSigOutButton();
+    @When("нет кнопки '{webElement}' то нажимаем '{webElement}'")
+    public void loginPrecondition(List<WebElement> link1, List<WebElement> link2) {
+        if (!navigationPanel.linkIsPresent(link1)) {
+            navigationPanel.clickOnLink(link2);
         }
     }
 
@@ -46,13 +50,25 @@ public class BaseSteps {
         navigationPanel.waitInSeconds(seconds);
     }
 
-    //Создание параметра в лице Юзера
-    @ParameterType("TestUser|RandomUser")
-    public User user(String userName) {
-        if (userName.equals("TestUser")) {
-            return TEST_USER;
-        }
-        return new User(BasePage.getRandomEmail(), TEST_USER.getPassword());
+    @И("проверяем, что текст всплывающего уведомления содержит - \"(.+)\"$")
+    public void checkAlertMsg(String msg) {
+        Assertions.assertTrue(homePage.getAlertText().contains(msg), "Текст ошибки в всплывающем уведомлении не соответствует ожидаемому");
     }
 
+    //Создание параметра в лице webElement оригинал метода лежит в NavigationPanelSteps
+//    @ParameterType("LOGIN|ADD|HOME|SIGN_OUT")
+//    public List<WebElement> webElement(String elementName) {
+//        switch (elementName) {
+//            case "LOGIN":
+//                return navigationPanel.loginLink;
+//            case "ADD":
+//                return navigationPanel.addLink;
+//            case "HOME":
+//                return navigationPanel.homeLink;
+//            case "SIGN_OUT":
+//                return navigationPanel.signOut;
+//            default:
+//                return null;
+//        }
+//    }
 }
