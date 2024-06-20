@@ -37,8 +37,9 @@ public class AlertsPage extends BasePage {
     new WebDriverWait(driver, Duration.ofSeconds(6)).until(ExpectedConditions.alertIsPresent());
   }
 
-  public void clickAlertButtonFirst() {
+  public AlertsPage clickAlertButtonFirst() {
     click(alertButton);
+    return this;
   }
 
   // Метод, который проверяет, есть ли алерт на странице
