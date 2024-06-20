@@ -61,9 +61,20 @@ public class BasePage {
   }
 
   @Step("Кликаем по элементу с JS: [{element}]")
-  protected void clickJS(WebElement element, int x, int y) {
+  protected void scrollAndClickJS(WebElement element, int x, int y) {
     js.executeScript("window.scrollBy(" + x + "," + y + ")");
     click(element);
+  }
+
+  @Step("Кликаем по элементу с JS: [{element}]")
+  protected void clickJS(WebElement element) {
+    js.executeScript("arguments[0].click()",element);
+  }
+
+  @Step("Делаем прокрутку экрана")
+  protected BasePage scrollPage() {
+    js.executeScript("window.scrollBy(0,150)");
+    return this;
   }
 
   @Step("Вводим текст: [{text}] в элемент: [{element}]")

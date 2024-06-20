@@ -47,7 +47,7 @@ public class PracticeFormPage extends BasePage {
     WebElement dateOfBirthInput;
 
     public PracticeFormPage enterDate(String date) {
-        clickJS(dateOfBirthInput, 0, 200);
+        scrollAndClickJS(dateOfBirthInput, 0, 200);
         String os = System.getProperty("os.name");
         if (os.contains("Mac")) {
             dateOfBirthInput.sendKeys(Keys.COMMAND, "a");
@@ -151,7 +151,7 @@ public class PracticeFormPage extends BasePage {
     WebElement yearContainer;
 
     public PracticeFormPage chooseDate(String month, String year, String day) {
-        clickJS(dateOfBirthInput, 0, 200);
+        scrollAndClickJS(dateOfBirthInput, 0, 200);
         new Select(monthContainer).selectByVisibleText(month);
         new Select(yearContainer).selectByVisibleText(year);
         driver.findElement(By.xpath("//div[@class='react-datepicker__week']//div[.='"+ day +"']")).click();
