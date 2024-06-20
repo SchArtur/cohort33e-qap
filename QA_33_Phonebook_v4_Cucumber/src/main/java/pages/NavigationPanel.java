@@ -9,41 +9,31 @@ import java.util.List;
 public class NavigationPanel extends BasePage{
 
     @FindBy(xpath = "//*[text()='LOGIN']")
-    List<WebElement> loginLink;
+    public List<WebElement> loginLink;
 
     @FindBy(css = "[href='/home']")
-    List<WebElement> homeLink;
+    public List<WebElement> homeLink;
 
     @FindBy(css = "[href='/add']")
-    List<WebElement> addLink;
+    public List<WebElement> addLink;
 
     @FindBy(xpath = "//*[text()='Sign Out']")
-    List<WebElement> signOut;
+    public List<WebElement> signOut;
 
     @FindBy(xpath = "//*[text()='Sign Out']")
-    WebElement signOutButton;
+    public WebElement signOutButton;
 
     @Step("Проверяем наличие кнопки 'Sign Out'")
     public boolean isSignOutButtonPresent() {
         return isElementPresent(signOut);
     }
 
-    @Step("Нажимаем на кнопку 'Sign Out'")
-    public LoginPage clickOnSigOutButton() {
-        clickOnElement(signOutButton);
-        return new LoginPage();
+    public void clickOnLink(List<WebElement> link) {
+        clickOnElement(link.get(0));
     }
 
-    @Step("Нажимаем на кнопку 'ADD'")
-    public AddContactPage clickOnAddLink() {
-        clickOnElement(addLink.get(0));
-        return new AddContactPage();
-    }
-
-    @Step("Нажимаем на кнопку 'HOME'")
-    public HomePage clickOnHomeLink() {
-        clickOnElement(homeLink.get(0));
-        return new HomePage();
+    public boolean linkIsPresent(List<WebElement> link) {
+        return isElementPresent(link);
     }
 
     @Step("Проверяем наличие кнопки 'LOGIN'")

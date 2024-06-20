@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.ParameterType;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
@@ -24,7 +25,7 @@ public class LoginPageSteps {
         loginPage.clickOnRegistrationButton();
     }
 
-    @Тогда("заполняем данные пользователя")
+    @Тогда("заполняем данные пользователя/контакта")
     public void fillLoginRegisterForm(Map<String, String> userFields) {
         User user = new User(userFields.get("Name"), userFields.get("Password"));
         loginPage.fillLoginRegisterForm(user);
@@ -59,5 +60,14 @@ public class LoginPageSteps {
     @Когда("заполняем поля авторизации пользователем {user}")
     public void loginTestUser(User user) {
         loginPage.fillLoginRegisterForm(user);
+    }
+
+    //Создание параметра в лице Юзера
+    @ParameterType("TestUser|RandomUser")
+    public User user(String userName) {
+        if (userName.equals("TestUser")) {
+            return TEST_USER;
+        }
+        return new User(BasePage.getRandomEmail(), TEST_USER.getPassword());
     }
 }
