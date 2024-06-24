@@ -6,5 +6,5 @@ include 'QA_33_Phonebook_v2_VOM'
 include 'QA_33_Phonebook_v2_POM'
 include 'QA_33_Phonebook_v3_POM'
 include 'QA_33_Phonebook_v4_Cucumber'
-
+include 'QA_33_Phonebook_v5_API'
 
