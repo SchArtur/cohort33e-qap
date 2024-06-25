@@ -1,4 +1,4 @@
 package ait.phonebook.utils;
 
-public class HttpsUtills {
+public class HttpUtills {
 }
