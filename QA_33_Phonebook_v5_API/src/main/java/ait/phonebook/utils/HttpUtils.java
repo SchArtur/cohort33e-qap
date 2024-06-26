@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import static ait.phonebook.utils.HttpUtils.HttpMethods.*;
+import static ait.phonebook.utils.Utils.isNullOrEmpty;
 import static io.restassured.RestAssured.given;
 
 public class HttpUtils {
@@ -22,6 +23,10 @@ public class HttpUtils {
 
     public static <T> T postResponse(Object body, String endpoint, int statusCode, Class<T> responseClass) {
         return getResponse(POST, endpoint, null, statusCode, body).as(responseClass);
+    }
+
+    public static <T> T postResponseWithToken(Object body, String endpoint, int statusCode, String token, Class<T> responseClass) {
+        return getResponse(POST, endpoint, token, statusCode, body).as(responseClass);
     }
 
     public static <T> T putResponse(Object body, String endpoint, int statusCode, String token, Class<T> responseClass) {
@@ -81,7 +86,7 @@ public class HttpUtils {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Accept", "application/json");
-        if (token != null || !"".equals(token)) {
+        if (!isNullOrEmpty(token)) {
             headers.put("Authorization", token);
         }
         requestSpecBuilder.addHeaders(headers);
