@@ -10,18 +10,23 @@ import java.util.Properties;
 public class BaseTest {
 
     public static Properties properties = TestProperties.getINSTANCE().getProperties();
-    public static final String LOGIN_ENDPOINT = properties.getProperty("login.endpoint");
 
     @BeforeAll
     public static void load() {
+        //Указываем в настройках RestAssured наш адрес для запросов
+        //https://contactapp-telran-backend.herokuapp.com
         RestAssured.baseURI = properties.getProperty("base.url");
-        RestAssured.basePath =properties.getProperty("base.version");
+        //Указываем в настройках RestAssured наш путь для запросов
+        //v1
+        RestAssured.basePath = properties.getProperty("base.version");
+        //https://contactapp-telran-backend.herokuapp.com/v1  - дальше это эндпоинты для работы /user/login/usernamepassword";
     }
 
     static AuthenticationBodyDto getLoginRq() {
-        return  AuthenticationBodyDto.builder()
+        return AuthenticationBodyDto.builder()
                 .username(properties.getProperty("testuser.name"))
-                .password(properties.getProperty("testuser.pass")).
-                build();
+                .password(properties.getProperty("testuser.pass"))
+                .build();
     }
+
 }

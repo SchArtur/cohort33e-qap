@@ -1,27 +1,36 @@
 package tests;
 
+import ait.phonebook.dto.AuthenticationBodyDto;
+import ait.phonebook.dto.ErrorMessageDto;
 import ait.phonebook.dto.TokenDto;
-import io.restassured.http.ContentType;
+import ait.phonebook.utils.HttpUtils;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
+import static ait.phonebook.utils.HttpUtils.LOGIN_ENDPOINT;
 
 public class LoginTests extends BaseTest {
 
     @Test
-    void test1() {
-        TokenDto tokenDto = given()//Начало запроса
-                .contentType(ContentType.JSON)//Указываем тип контента
-                .body(getLoginRq())// Тело запроса (POST & PUT) ------------сюда бади с контактом или логины
-                .when()// с каким методом и на какой эндпойнт отправляем запрос.
-                .log().all()// логирование в консоль
-                .post(LOGIN_ENDPOINT)// на какой адрес (или endpoint) отправляем запрос --------- эндрпоинт
-                .then()// Что делаем когда получаем ответ
-                .log().all()//Логируем ответ
-                .assertThat().statusCode(200)//Проверяем статус код пришедшего ответа
-                .extract().response().as(TokenDto.class);//извлекаем ответ.
+    @DisplayName("Проверка успешной авторизации")
+    void test2() {
+        TokenDto tokenDto = HttpUtils.postResponse(getLoginRq(), LOGIN_ENDPOINT, 200, TokenDto.class);
 
-        System.out.println();
-        System.out.println(tokenDto.getToken());
+        Assertions.assertFalse(tokenDto.getToken().isEmpty(), "Пришел пустой токен");
+    }
+
+    @Test
+    @DisplayName("Проверка авторизации с не корректным логином")
+    void test3() {
+        AuthenticationBodyDto loginRqBody = AuthenticationBodyDto.builder()
+                .username("login.com")
+                .password("QwertY123!")
+                .build();
+
+        ErrorMessageDto errorMessageDto = HttpUtils.postResponse(loginRqBody, LOGIN_ENDPOINT, 401, ErrorMessageDto.class);
+
+        Assertions.assertEquals("Login or Password incorrect", errorMessageDto.getMessage(), "Текст ошибки не соответствует ожидаемому");
+        Assertions.assertEquals("Unauthorized", errorMessageDto.getError(), "Тип ошибки не соответствует ожидаемому");
     }
 }
