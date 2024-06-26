@@ -11,4 +11,7 @@ include 'DemoQA_Pom_Selenium'
 include 'Google-POM_Selenium'
 include 'QA_33_DemoQA_Selenium_Gradle_JUnit_POM_v1'
 include 'QA_33_HW_POM_Selenium_Gadle_JUnit'
+include 'QA_33_Phonebook_v4_Cucumber'
+include 'QA_33_Phonebook_v5_API'
+include 'QA_33_Phonebook_v5_API_OM'
 
