@@ -1,27 +1,86 @@
 package tests;
 
+import ait.phonebook.dto.AuthenticationBodyDto;
+import ait.phonebook.dto.ErrorMessageDto;
 import ait.phonebook.dto.TokenDto;
-import io.restassured.http.ContentType;
+import ait.phonebook.utils.HttpUtils;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
+import static ait.phonebook.utils.HttpUtils.LOGIN_ENDPOINT;
+import static ait.phonebook.utils.HttpUtils.REGISTRATION_ENDPOINT;
+import static ait.phonebook.utils.Utils.getRandomEmail;
+import static ait.phonebook.utils.Utils.isNullOrEmpty;
 
 public class LoginTests extends BaseTest {
 
     @Test
+    @DisplayName("Проверка успешной авторизации")
     void test1() {
-        TokenDto tokenDto = given()//Начало запроса
-                .contentType(ContentType.JSON)//Указываем тип контента
-                .body(getLoginRq())// Тело запроса (POST & PUT) ------------сюда бади с контактом или логины
-                .when()// с каким методом и на какой эндпойнт отправляем запрос.
-                .log().all()// логирование в консоль
-                .post(LOGIN_ENDPOINT)// на какой адрес (или endpoint) отправляем запрос --------- эндрпоинт
-                .then()// Что делаем когда получаем ответ
-                .log().all()//Логируем ответ
-                .assertThat().statusCode(200)//Проверяем статус код пришедшего ответа
-                .extract().response().as(TokenDto.class);//извлекаем ответ.
+        TokenDto tokenDto = HttpUtils.postResponse(getTestUserLoginBody(), LOGIN_ENDPOINT, 200, TokenDto.class);
 
-        System.out.println();
-        System.out.println(tokenDto.getToken());
+        Assertions.assertFalse(isNullOrEmpty(tokenDto.getToken()), "Пришел пустой токен");
+    }
+
+    @Test
+    @DisplayName("Проверка авторизации с не корректным email")
+    void test2() {
+        AuthenticationBodyDto loginRqBody = getTestUserLoginBody();
+        loginRqBody.setUsername("manuelgm.com");
+
+        ErrorMessageDto errorMessageDto = HttpUtils.postResponse(loginRqBody, LOGIN_ENDPOINT, 401, ErrorMessageDto.class);
+
+        Assertions.assertEquals("Login or Password incorrect", errorMessageDto.getMessage(), "Текст ошибки не соответствует ожидаемому");
+        Assertions.assertEquals("Unauthorized", errorMessageDto.getError(), "Тип ошибки не соответствует ожидаемому");
+    }
+
+    @Test
+    @DisplayName("Проверка авторизации с не корректным password")
+    void test6() {
+        AuthenticationBodyDto loginRqBody = getTestUserLoginBody();
+        loginRqBody.setPassword("qwerty");
+
+        ErrorMessageDto errorMessageDto = HttpUtils.postResponse(loginRqBody, LOGIN_ENDPOINT, 401, ErrorMessageDto.class);
+
+        Assertions.assertEquals("Login or Password incorrect", errorMessageDto.getMessage(), "Текст ошибки не соответствует ожидаемому");
+        Assertions.assertEquals("Unauthorized", errorMessageDto.getError(), "Тип ошибки не соответствует ожидаемому");
+    }
+
+    @Test
+    @DisplayName("Проверка успешной регистрации")
+    void test3() {
+        AuthenticationBodyDto registrationRqBody = AuthenticationBodyDto.builder()
+                .username(getRandomEmail())
+                .password("QwertY123!")
+                .build();
+
+        TokenDto tokenDto = HttpUtils.postResponse(registrationRqBody, REGISTRATION_ENDPOINT, 200, TokenDto.class);
+        Assertions.assertFalse(isNullOrEmpty(tokenDto.getToken()), "Пришел пустой токен");
+    }
+
+    @Test
+    @DisplayName("Проверка регистрации с уже существующим email")
+    void test4() {
+        AuthenticationBodyDto registrationRqBody = getTestUserLoginBody();
+
+        ErrorMessageDto errorMessageDto = HttpUtils.postResponse(registrationRqBody, REGISTRATION_ENDPOINT, 409, ErrorMessageDto.class);
+
+        Assertions.assertEquals("User already exists", errorMessageDto.getMessage(), "Текст ошибки не соответствует ожидаемому");
+        Assertions.assertEquals("Conflict", errorMessageDto.getError(), "Тип ошибки не соответствует ожидаемому");
+    }
+
+    @Test
+    @DisplayName("Проверка регистрации с не корректным email")
+    void test5() {
+        AuthenticationBodyDto loginRqBody = AuthenticationBodyDto.builder()
+                .username("login.com")
+                .password("QwertY123!")
+                .build();
+
+        ErrorMessageDto errorMessageDto = HttpUtils.postResponse(loginRqBody, REGISTRATION_ENDPOINT, 400, ErrorMessageDto.class);
+        String msg = errorMessageDto.getMessage().toString();
+        Assertions.assertTrue(msg.contains("must be a well-formed email address"), "Текст ошибки не соответствует ожидаемому");
+        Assertions.assertEquals("Bad Request", errorMessageDto.getError(), "Тип ошибки не соответствует ожидаемому");
     }
 }

@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
+//тоже самое RegistrationBodyDto
 public class AuthenticationBodyDto {
     private String username;
     private String password;
