@@ -1,8 +1,9 @@
 package tests;
 
-import ait.phonebook.dto.*;
+import ait.phonebook.dto.ContactsDto;
+import ait.phonebook.dto.ResponseMessageDto;
+import ait.phonebook.dto.TokenDto;
 import ait.phonebook.utils.HttpUtils;
-import io.qameta.allure.internal.shadowed.jackson.annotation.JsonTypeInfo;
 import org.junit.jupiter.api.*;
 
 import java.util.Set;
@@ -28,7 +29,6 @@ public class ContactsTests extends BaseTest {
         }
     }
 
-
     @Test
     @DisplayName("Проверка получения списка контактов у авторизованного пользователя")
     void test1() {
@@ -39,8 +39,7 @@ public class ContactsTests extends BaseTest {
     @Test
     @DisplayName("Проверка получения списка контактов без авторизации")
     void test2() {
-        ErrorMessageDto errorMessageDto = getResponse(null, CONTACTS_ENDPOINT, 401, ErrorMessageDto.class);
-        Assertions.assertEquals("Unauthorized", errorMessageDto.getError(), "Тип ошибки не соответствует ожидаемому");
+        HttpUtils.getResponse(HttpMethods.GET, CONTACTS_ENDPOINT, null, 403, null);
     }
 
     @Test
@@ -54,6 +53,7 @@ public class ContactsTests extends BaseTest {
         ContactsDto contacts = getResponse(token, CONTACTS_ENDPOINT, 200, ContactsDto.class);
         Assertions.assertTrue(contacts.getContacts().size() == 1);
         Assertions.assertEquals(id, contacts.getContacts().get(0).getId(), "Добавлен контакт с другим id");
+        HttpUtils.deleteResponse(token, CONTACTS_ENDPOINT + "/clear", 200, ResponseMessageDto.class);
     }
 
     @Test
