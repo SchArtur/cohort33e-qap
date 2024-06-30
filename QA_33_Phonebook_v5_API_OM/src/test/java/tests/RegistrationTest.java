@@ -35,6 +35,8 @@ public class RegistrationTest extends BaseTest {
 
 
     }
+
+@Test
     void negativeRegistrationTest() {
         ContactDto registrationBody = ContactDto.builder()
                 .id(null)
