@@ -1,6 +1,5 @@
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
@@ -9,6 +8,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculatorTest {
     @Test
@@ -22,27 +23,31 @@ public class CalculatorTest {
         // Пакет приложения
         capabilities.setCapability("appPackage", "com.android.calculator2");
         // Активити приложения
-       capabilities.setCapability("appActivity", "com.android.calculator2/.Calculator");
+       capabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
 
 //        com.google.android.deskclock/com.android.deskclock.DeskClock - либо LogCat (ActivityManager -Displayed ) либо в cmd: adb -e shell dumpsys window windows | grep Focus
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), capabilities);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        WebElement elementCalculator = driver.findElement(AppiumBy.id("com.android.calculator2:id/result"));
-        elementCalculator.click();
-        WebElement elementDelete = driver.findElement(AppiumBy.accessibilityId("\t\n" +
-                "delete"));
-        elementDelete.click();
-        driver.navigate().back();
+        WebElement elementCalculatorTwo = driver.findElement(AppiumBy.id("com.android.calculator2:id/digit_2"));
+        elementCalculatorTwo.click();
 
-        WebElement elementSeven = driver.findElement(AppiumBy.id("com.android.calculator2:id/digit_7"));
-        elementSeven.click();
-        Assertions.assertEquals("7", elementSeven.getText());
+        WebElement elementCalculatorPlus = driver.findElement(AppiumBy.accessibilityId("plus"));
+        elementCalculatorPlus.click();
 
+        WebElement elementCalculatorAgainTwo = driver.findElement(AppiumBy.id("com.android.calculator2:id/digit_2"));
+        elementCalculatorAgainTwo.click();
 
-        WebElement elementMultiply = driver.findElement(AppiumBy.accessibilityId("multiply"));
-        elementMultiply.click();
-        Assertions.assertEquals("*", elementMultiply.getText());
+        WebElement elementCalculatorEquals = driver.findElement(AppiumBy.accessibilityId("equals"));
+       elementCalculatorEquals.click();
+
+        WebElement elementCalculatorResult = driver.findElement(AppiumBy.id("com.android.calculator2:id/result"));
+        elementCalculatorResult.click();
+        assertEquals("4", elementCalculatorResult.getText());
+
+        WebElement elementCalculatorClear = driver.findElement(AppiumBy.accessibilityId("clear"));
+        elementCalculatorClear.click();
+
 
     }
 
