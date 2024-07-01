@@ -1,6 +1,5 @@
 package ait.phonebook.utils;
 
-import ait.phonebook.dto.TokenDto;
 import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
@@ -41,7 +40,8 @@ public class HttpUtils {
         return getResponse(DELETE, endpoint, token, statusCode, null).as(responseClass);
     }
 
-    private static Response getResponse(HttpMethods method, String endpoint, String token, int statusCode, Object body) {
+    @Step("Отправляет запрос")
+    public static Response getResponse(HttpMethods method, String endpoint, String token, int statusCode, Object body) {
         //RequestSpecification - это сам запрос, через него можно выделить общую часть запроса
         RequestSpecification requestSpecification = given().spec(getRequestSpecBuilder(token).build()).when().log().all();
 
