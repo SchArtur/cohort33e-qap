@@ -1,0 +1,3 @@
+rootProject.name = 'cohort33e-qap'
+include 'QA_33_Phonebook_v2_POM'
+
