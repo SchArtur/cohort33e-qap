@@ -11,6 +11,10 @@ public class AppiumStartServer {
         //Создаем билдер с настройками нашего appium сервера
         AppiumServiceBuilder builder = new AppiumServiceBuilder();
         // Устанавливаем путь до appium (cmd: where appium)
+//        C:\\Users\\<Username>\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js - для виндовс план б указать именно мэйн
+//        C:\Users\<Username>\AppData\Roaming\npm\node_modules\appium - путь до аппиум
+//        builder.withAppiumJS(new File("C:\\Users\\<Username>\\AppData\\Roaming\\npm\\node_modules\\appium"));
+
         builder.withAppiumJS(new File("/opt/homebrew/bin/appium"));
         // Указываем адрес и порт
         builder.withIPAddress("127.0.0.1").usingPort(4723);

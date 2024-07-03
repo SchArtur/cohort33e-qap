@@ -3,7 +3,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -142,6 +141,42 @@ public class FirstAppiumTest {
 
         AppiumStartServer.stopServer();
     }
+    @Test
+    void wdioTest2() throws IOException {
+        AppiumStartServer.startServer();
+        //Аналог DesiredCapabilities, но уже с предустановленными настройками платфомы и драйвера
+        UiAutomator2Options options = new UiAutomator2Options()
+                //установка приложения на телефон
+                .setApp(new File("src/test/resources/mobiCalculatorApp.apk").getAbsolutePath())
+                //Запуск эмулятора (cmd: emulator -list-avds  посмотреть имя эмулятора)
+                .setPlatformVersion("8")
+                .setAvd("android_jenkins_26");
+//my.android.calc/my.android.calc.MainActivity
 
+        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        wait.until(ExpectedConditions.alertIsPresent()).accept();
+        wait.until(ExpectedConditions.alertIsPresent()).accept();
+        wait.until(ExpectedConditions.alertIsPresent()).accept();
+
+        WebElement twoDigit = driver.findElement(AppiumBy.id("my.android.calc:id/b031"));
+        WebElement plus = driver.findElement(AppiumBy.id("my.android.calc:id/b043"));
+        twoDigit.click();
+        plus.click();
+        twoDigit.click();
+        WebElement equals = driver.findElement(AppiumBy.id("my.android.calc:id/b044"));
+        equals.click();
+        WebElement result = driver.findElement(AppiumBy.id("my.android.calc:id/result"));
+        Assertions.assertEquals("4", result.getText());
+        WebElement clear = driver.findElement(AppiumBy.id("my.android.calc:id/b003"));
+        clear.click();
+
+        Runtime.getRuntime().exec("adb -s emulator-5554 emu kill");
+
+        AppiumStartServer.stopServer();
+    }
 
 }
