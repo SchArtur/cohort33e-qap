@@ -17,8 +17,12 @@ public class AppiumStartServer {
     public static void startServer() throws IOException {
         //Создаем билдер с настройками нашего appium сервера
         AppiumServiceBuilder builder = new AppiumServiceBuilder();
+        // C:\\Users\\<Username>\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js - для виндовс план б указать именно мэйн
+        // C:\Users\<Username>\AppData\Roaming\npm\node_modules\appium - путь до аппиум
+
         // Устанавливаем путь до appium (cmd: where appium)
         builder.withAppiumJS(new File("/opt/homebrew/bin/appium"));
+        // builder.withAppiumJS(new File("C:\\Users\\<Username>\\AppData\\Roaming\\npm\\node_modules\\appium"));
         // Указываем адрес и порт
         builder.withIPAddress("127.0.0.1").usingPort(4723);
 
@@ -29,7 +33,7 @@ public class AppiumStartServer {
         } catch (AppiumServerHasNotBeenStartedLocallyException e) {
             LOG.info("Server started - failed");
             LOG.info("Попытка перезапуска");
-            // для закрытия на windows- taskkill /F /IM node.exe
+            // для закрытия на windows- "taskkill /F /IM node.exe"
             Runtime.getRuntime().exec("pkill -9 -f appium");
             service.start();
         }
@@ -47,5 +51,14 @@ public class AppiumStartServer {
             service.stop();
             LOG.info("Server stopped");
         }
+    }
+
+    //Не рекомендую так делать
+    public static void startServerCmd() throws IOException {
+        Runtime.getRuntime().exec("appium");
+    }
+    //Не рекомендую так делать
+    public static void stopServerCmd() throws IOException {
+        Runtime.getRuntime().exec("pkill -9 -f appium");
     }
 }

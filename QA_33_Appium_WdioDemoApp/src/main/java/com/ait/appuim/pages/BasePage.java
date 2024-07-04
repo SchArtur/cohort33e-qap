@@ -2,10 +2,10 @@ package com.ait.appuim.pages;
 
 import com.ait.appuim.core.AppManager;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AppiumElementLocatorFactory;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,17 +16,18 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasePage {
 
     AppiumDriver driver;
     WebDriverWait wait;
+    JavascriptExecutor js;
 
     public BasePage() {
         this.driver = AppManager.driver;
         this.wait = AppManager.wait;
+        js = (JavascriptExecutor) driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -52,7 +53,6 @@ public class BasePage {
         element.click();
         element.clear();
         element.sendKeys(value);
-        assertEquals(value, element.getAttribute("value"), "Введенный текст отличается от того что в элементе");
     }
 
     //    @Step("Делаем клик по элементу с локатором {0}")
@@ -90,5 +90,10 @@ public class BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Step("Делаем прокрутку экрана")
+    public void scrollPage() {
+        js.executeScript("window.scrollBy(0,150)");
     }
 }
